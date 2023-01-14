@@ -11,7 +11,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Infrastructure", "SampleApp
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Sample App", "Sample App", "{380921B0-600C-4AB4-BFC4-7DF39076B657}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Core", "Core\Core.csproj", "{BD160D29-9282-4E6E-AAB6-15B9CAC11583}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Core", "Core\Core.csproj", "{BD160D29-9282-4E6E-AAB6-15B9CAC11583}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
