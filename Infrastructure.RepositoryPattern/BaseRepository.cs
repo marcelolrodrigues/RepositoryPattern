@@ -4,17 +4,19 @@ namespace Infrastructure.RepositoryPattern
 {
     public class BaseRepository<T> where T : class
     {
-        private readonly DbContext dbContext;
+        private readonly DbContext _dbContext;
+        private readonly DbSet<T> _set;
 
         public BaseRepository(DbContext dbContext)
         {
-            this.dbContext = dbContext;
+            this._dbContext = dbContext;
+            this._set = dbContext.Set<T>();
         }
 
         // create
         public async Task<T> Create(T entity) 
         {
-            await dbContext.Set<T>().AddAsync(entity);
+            await _set.AddAsync(entity);
             await SaveChanges();
             return entity;
         }
@@ -40,7 +42,7 @@ namespace Infrastructure.RepositoryPattern
         // SaveChanges
         public async Task SaveChanges()
         {
-            await dbContext.SaveChangesAsync();
+            await _dbContext.SaveChangesAsync();
         }
     }
 }

@@ -1,8 +1,7 @@
 ﻿using API.Models;
+using API.Services;
 using Core.Entities;
-using Infrastructure.RepositoryPattern;
 using Microsoft.AspNetCore.Mvc;
-using SampleApp.Infrastructure;
 
 namespace API.Controllers
 {
@@ -10,11 +9,11 @@ namespace API.Controllers
     [Route("[controller]/[action]")]
     public class CustomerController : ControllerBase
     {
-        private readonly BaseRepository<Customer> SampleRepository;
+        private readonly CustomerService _customerService;
 
-        public CustomerController(SampleRepository<Customer> sampleRepository)
+        public CustomerController(CustomerService customerService)
         {
-            this.SampleRepository = sampleRepository;
+            this._customerService = customerService;
         }
 
         [HttpGet]
@@ -26,13 +25,8 @@ namespace API.Controllers
         [HttpPost]
         public async Task<IActionResult> Create(CustomerDto customerDto)
         {
-            Customer customer = new Customer(
-                "Marcelo", "lrodrigues.marcelo@gmail.com", "rua teste 123"
-            );
-            Customer outputCustomer = await SampleRepository.Create(customer);
-
+            Customer outputCustomer = await _customerService.Create(customerDto);
             return Ok(outputCustomer);
         }
-
     }
 }
