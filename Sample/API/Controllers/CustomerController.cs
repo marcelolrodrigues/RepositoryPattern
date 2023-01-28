@@ -28,5 +28,12 @@ namespace API.Controllers
             Customer outputCustomer = await _customerService.Create(customerDto);
             return Ok(outputCustomer);
         }
+
+        [HttpGet]
+        public async Task<IActionResult> GetByIdAsync(int customerId)
+        {
+            Customer outputCustomer = await _customerService.GetByIdAsync(customerId);
+            return Ok(outputCustomer);
+        }
     }
 }

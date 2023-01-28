@@ -4,7 +4,7 @@
     {
         Task<T> Create(T entity);
 
-        Task<T> Read(T entity);
+        Task<T?> GetById<TId>(TId entityId) where TId : notnull;
 
         Task<T> Update(T entity);
 

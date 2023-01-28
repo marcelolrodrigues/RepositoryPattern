@@ -22,5 +22,12 @@ namespace API.Services
             Customer outputCustomer = await _customerRepository.Create(customer);
             return outputCustomer;
         }
+
+        public async Task<Customer> GetByIdAsync(int customerId)
+        {
+            Customer? customer = await _customerRepository.GetById(customerId);
+            Customer outputCustomer = customer ?? new Customer("default", "default", "default");
+            return outputCustomer;
+        }
     }
 }

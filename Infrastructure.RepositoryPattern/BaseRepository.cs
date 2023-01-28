@@ -13,6 +13,8 @@ namespace Infrastructure.RepositoryPattern
             this._set = dbContext.Set<T>();
         }
 
+        #region CRUD
+
         // create
         public async Task<T> Create(T entity) 
         {
@@ -22,8 +24,9 @@ namespace Infrastructure.RepositoryPattern
         }
 
         // read
-        public async Task<T> Read(T entity)
+        public async Task<T?> GetById<TId>(TId entityId) where TId : notnull
         {
+            T? entity = await _set.FindAsync(entityId);
             return entity;
         }
 
@@ -39,7 +42,8 @@ namespace Infrastructure.RepositoryPattern
             return entity;
         }
 
-        // SaveChanges
+        #endregion
+
         public async Task SaveChanges()
         {
             await _dbContext.SaveChangesAsync();
