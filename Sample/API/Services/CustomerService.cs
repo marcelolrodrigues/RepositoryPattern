@@ -18,15 +18,22 @@ namespace API.Services
 
         public async Task<Customer> Create(CustomerDto customerDto)
         {
-            Customer customer = _mapper.Map<Customer>(customerDto);
-            Customer outputCustomer = await _customerRepository.Create(customer);
+            Customer inputCustomer = _mapper.Map<Customer>(customerDto);
+            Customer outputCustomer = await _customerRepository.CreateAsync(inputCustomer);
             return outputCustomer;
         }
 
         public async Task<Customer> GetByIdAsync(int customerId)
         {
-            Customer? customer = await _customerRepository.GetById(customerId);
+            Customer? customer = await _customerRepository.GetByIdAsync(customerId);
             Customer outputCustomer = customer ?? new Customer("default", "default", "default");
+            return outputCustomer;
+        }
+
+        public async Task<Customer> UpdateAsync(CustomerDto costumerDto)
+        {
+            Customer inputCustomer = _mapper.Map<Customer>(costumerDto);
+            Customer outputCustomer = await _customerRepository.UpdateAsync(inputCustomer);
             return outputCustomer;
         }
     }

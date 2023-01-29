@@ -1,8 +1,9 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Core.Interfaces.Repositories;
+using Microsoft.EntityFrameworkCore;
 
 namespace Infrastructure.RepositoryPattern
 {
-    public class BaseRepository<T> where T : class
+    public class BaseRepository<T> : IBaseRepository<T> where T : class
     {
         private readonly DbContext _dbContext;
         private readonly DbSet<T> _set;
@@ -15,36 +16,35 @@ namespace Infrastructure.RepositoryPattern
 
         #region CRUD
 
-        // create
-        public async Task<T> Create(T entity) 
+        public async Task<T> CreateAsync(T entity) 
         {
             await _set.AddAsync(entity);
-            await SaveChanges();
+            await SaveChangesAsync();
             return entity;
         }
 
-        // read
-        public async Task<T?> GetById<TId>(TId entityId) where TId : notnull
+        public async Task<T?> GetByIdAsync<TId>(TId entityId) where TId : notnull
         {
             T? entity = await _set.FindAsync(entityId);
             return entity;
         }
 
-        // update
-        public async Task<T> Update(T entity)
+        public async Task<T> UpdateAsync(T entity)
         {
+            _set.Update(entity);
+            await SaveChangesAsync();
             return entity;
         }
 
         // delete
-        public async Task<T> Delete(T entity)
+        public async Task<T> DeleteAsync(T entity)
         {
             return entity;
         }
 
         #endregion
 
-        public async Task SaveChanges()
+        public async Task SaveChangesAsync()
         {
             await _dbContext.SaveChangesAsync();
         }

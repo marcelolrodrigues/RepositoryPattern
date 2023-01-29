@@ -30,9 +30,16 @@ namespace API.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> GetByIdAsync(int customerId)
+        public async Task<IActionResult> GetById(int customerId)
         {
             Customer outputCustomer = await _customerService.GetByIdAsync(customerId);
+            return Ok(outputCustomer);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Update(CustomerDto customerDto)
+        {
+            Customer outputCustomer = await _customerService.UpdateAsync(customerDto);
             return Ok(outputCustomer);
         }
     }
