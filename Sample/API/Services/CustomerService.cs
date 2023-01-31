@@ -36,5 +36,11 @@ namespace API.Services
             Customer outputCustomer = await _customerRepository.UpdateAsync(inputCustomer);
             return outputCustomer;
         }
+
+        public async Task<List<Customer>> ListAsync()
+        {
+            List<Customer> customers = await _customerRepository.ListAsync();
+            return customers;
+        }
     }
 }

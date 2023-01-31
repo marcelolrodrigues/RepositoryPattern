@@ -36,6 +36,13 @@ namespace API.Controllers
             return Ok(outputCustomer);
         }
 
+        [HttpGet]
+        public async Task<IActionResult> List()
+        {
+            List<Customer> customers = await _customerService.ListAsync();
+            return Ok(customers);
+        }
+
         [HttpPost]
         public async Task<IActionResult> Update(CustomerDto customerDto)
         {

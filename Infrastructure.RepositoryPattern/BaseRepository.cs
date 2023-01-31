@@ -29,6 +29,12 @@ namespace Infrastructure.RepositoryPattern
             return entity;
         }
 
+        public async Task<List<T>> ListAsync()
+        {
+            List<T> list = await _set.ToListAsync();
+            return list;
+        }
+
         public async Task<T> UpdateAsync(T entity)
         {
             _set.Update(entity);
@@ -36,7 +42,6 @@ namespace Infrastructure.RepositoryPattern
             return entity;
         }
 
-        // delete
         public async Task<T> DeleteAsync(T entity)
         {
             return entity;
