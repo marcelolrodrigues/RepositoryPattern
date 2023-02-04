@@ -1,5 +1,4 @@
-﻿using Core.Entities;
-using Core.Specifications;
+﻿using Core.SpecificationPattern;
 
 namespace Core.Interfaces.Repositories
 {

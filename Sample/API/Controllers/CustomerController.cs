@@ -1,7 +1,8 @@
 ﻿using API.Models;
 using API.Services;
 using Core.Entities;
-using Core.Specifications;
+using Core.SpecificationPattern;
+using Core.SpecificationPattern.Expressions;
 using Microsoft.AspNetCore.Mvc;
 using System.Linq.Expressions;
 
@@ -43,11 +44,18 @@ namespace API.Controllers
         {
             BaseSpecification<Customer> spec = new BaseSpecification<Customer>();
             spec.Where(
-                new List<Expression<Func<Customer, bool>>>(){
-                    x => x.Id == 3,
-                    x => x.Name == "marcelo2"
-                }
-            );
+                    new List<Expression<Func<Customer, bool>>>(){
+                        x => x.Name == "marcelo"
+                    }
+                ).OrderBy(
+                    new List<OrderExpression<Customer>>()
+                    {
+                        new OrderExpression<Customer>(){ 
+                            OrderBy = OrderBy.Ascending, 
+                            OrderByExpression = cust => cust.Id 
+                        }
+                    }
+                );
 
             List<Customer> outputCustomer = await _customerService.FindWithSpecification(spec);
             return Ok(outputCustomer);

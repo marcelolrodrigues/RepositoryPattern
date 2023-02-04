@@ -2,7 +2,7 @@
 using AutoMapper;
 using Core.Entities;
 using Core.Interfaces.Repositories;
-using Core.Specifications;
+using Core.SpecificationPattern;
 
 namespace API.Services
 {

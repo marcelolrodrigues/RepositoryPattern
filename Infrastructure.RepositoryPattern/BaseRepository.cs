@@ -1,5 +1,5 @@
 ﻿using Core.Interfaces.Repositories;
-using Core.Specifications;
+using Core.SpecificationPattern;
 using Microsoft.EntityFrameworkCore;
 
 namespace Infrastructure.RepositoryPattern
@@ -55,22 +55,16 @@ namespace Infrastructure.RepositoryPattern
         public async Task<List<T>> FindWithSpecification(BaseSpecification<T> specification)
         {
             IQueryable<T> query = _set.AsQueryable();
-            
-            // where
-            foreach (var where in specification.WhereExpressions)
-            {
-                query = query.Where(where);
-            }
-            // order by
-            foreach (var item in specification.WhereExpressions)
-            {
-
-            }
-
-
-
+            query = GetQuery(specification, query);
             var result = await query.ToListAsync();
             return result;
+        }
+
+        private IQueryable<T> GetQuery(BaseSpecification<T> specification, IQueryable<T> query)
+        {
+            SpecificationEvaluator specEval = SpecificationEvaluator.Instance;
+            query = specEval.GetQuery(query, specification);
+            return query;
         }
 
         #endregion
