@@ -2,6 +2,7 @@
 using AutoMapper;
 using Core.Entities;
 using Core.Interfaces.Repositories;
+using Core.Specifications;
 
 namespace API.Services
 {
@@ -28,6 +29,12 @@ namespace API.Services
             Customer? customer = await _customerRepository.GetByIdAsync(customerId);
             Customer outputCustomer = customer ?? new Customer("default", "default", "default");
             return outputCustomer;
+        }
+
+        public async Task<List<Customer>> FindWithSpecification(BaseSpecification<Customer> spec)
+        {
+            List<Customer> customers = await _customerRepository.FindWithSpecification(spec);
+            return customers;
         }
 
         public async Task<Customer> UpdateAsync(CustomerDto costumerDto)

@@ -1,7 +1,9 @@
 ﻿using API.Models;
 using API.Services;
 using Core.Entities;
+using Core.Specifications;
 using Microsoft.AspNetCore.Mvc;
+using System.Linq.Expressions;
 
 namespace API.Controllers
 {
@@ -33,6 +35,21 @@ namespace API.Controllers
         public async Task<IActionResult> GetById(int customerId)
         {
             Customer outputCustomer = await _customerService.GetByIdAsync(customerId);
+            return Ok(outputCustomer);
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> SingleWithSpecification()
+        {
+            BaseSpecification<Customer> spec = new BaseSpecification<Customer>();
+            spec.Where(
+                new List<Expression<Func<Customer, bool>>>(){
+                    x => x.Id == 3,
+                    x => x.Name == "marcelo2"
+                }
+            );
+
+            List<Customer> outputCustomer = await _customerService.FindWithSpecification(spec);
             return Ok(outputCustomer);
         }
 

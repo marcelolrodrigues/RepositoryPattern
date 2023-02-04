@@ -1,4 +1,5 @@
 ﻿using Core.Interfaces.Repositories;
+using Core.Specifications;
 using Microsoft.EntityFrameworkCore;
 
 namespace Infrastructure.RepositoryPattern
@@ -14,7 +15,7 @@ namespace Infrastructure.RepositoryPattern
             this._set = dbContext.Set<T>();
         }
 
-        #region CRUD
+        #region No Specs
 
         public async Task<T> CreateAsync(T entity) 
         {
@@ -45,6 +46,31 @@ namespace Infrastructure.RepositoryPattern
         public async Task<T> DeleteAsync(T entity)
         {
             return entity;
+        }
+
+        #endregion
+
+        #region Specs
+
+        public async Task<List<T>> FindWithSpecification(BaseSpecification<T> specification)
+        {
+            IQueryable<T> query = _set.AsQueryable();
+            
+            // where
+            foreach (var where in specification.WhereExpressions)
+            {
+                query = query.Where(where);
+            }
+            // order by
+            foreach (var item in specification.WhereExpressions)
+            {
+
+            }
+
+
+
+            var result = await query.ToListAsync();
+            return result;
         }
 
         #endregion
