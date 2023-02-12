@@ -20,7 +20,7 @@ namespace API.Services
         public async Task<Customer> Create(CustomerDto customerDto)
         {
             Customer inputCustomer = _mapper.Map<Customer>(customerDto);
-            Customer outputCustomer = await _customerRepository.CreateAsync(inputCustomer);
+            Customer outputCustomer = await _customerRepository. CreateAsync(inputCustomer);
             return outputCustomer;
         }
 
@@ -33,7 +33,7 @@ namespace API.Services
 
         public async Task<List<Customer>> FindWithSpecification(BaseSpecification<Customer> spec)
         {
-            List<Customer> customers = await _customerRepository.FindWithSpecification(spec);
+            List<Customer> customers = await _customerRepository.ListWithSpecification(spec);
             return customers;
         }
 

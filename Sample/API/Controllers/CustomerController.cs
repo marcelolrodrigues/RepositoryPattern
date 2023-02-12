@@ -40,7 +40,7 @@ namespace API.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> SingleWithSpecification()
+        public async Task<IActionResult> ListWithSpecification()
         {
             BaseSpecification<Customer> spec = new BaseSpecification<Customer>();
             spec.Where(

@@ -1,14 +1,13 @@
-﻿using Core.SpecificationPattern;
-using Core.SpecificationPattern.Evaluator;
-using Core.SpecificationPattern.Expressions;
+﻿using Core.SpecificationPattern.Expressions;
+using Core.SpecificationPattern.Interfaces;
 
-namespace Infrastructure.RepositoryPattern.Evaluators
+namespace SpecificationRepository.Infrastructure.Evaluators
 {
-    public class OrderByEvaluator : IEvaluator
+    public class OrderByEvaluator<T> : IEvaluator<T>
     {
-        public static OrderByEvaluator Instance { get; } = new OrderByEvaluator();
+        public static OrderByEvaluator<T> Instance { get; } = new OrderByEvaluator<T>();
 
-        public IQueryable<T> GetQuery<T>(IQueryable<T> query, BaseSpecification<T> spec)
+        public IQueryable<T> GetQuery(IQueryable<T> query, IBaseSpecification<T> spec)
         {
             foreach (OrderExpression<T> orderExpression in spec.OrderByExpressions)
             {

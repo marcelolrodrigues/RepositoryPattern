@@ -1,13 +1,10 @@
-﻿using Core.SpecificationPattern;
-
-namespace Core.Interfaces.Repositories
+﻿namespace BaseRepository.Core
 {
     public interface IBaseRepository<T>
     {
         Task<T> CreateAsync(T entity);
 
         Task<T?> GetByIdAsync<TId>(TId entityId) where TId : notnull;
-        Task<List<T>> FindWithSpecification(BaseSpecification<T> specification);
 
         Task<List<T>> ListAsync();
 

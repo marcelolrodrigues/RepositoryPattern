@@ -1,9 +1,10 @@
 ﻿using Core.SpecificationPattern.Expressions;
+using Core.SpecificationPattern.Interfaces;
 using System.Linq.Expressions;
 
 namespace Core.SpecificationPattern
 {
-    public class BaseSpecification<T>
+    public class BaseSpecification<T> : IBaseSpecification<T>
     {
         public List<Expression<Func<T, bool>>> WhereExpressions { get; private set; }
         public List<OrderExpression<T>> OrderByExpressions { get; private set; }

@@ -1,10 +1,10 @@
 ﻿using Core.Entities;
 using Core.Interfaces.Repositories;
-using Infrastructure.RepositoryPattern;
+using SpecificationRepository.Infrastructure;
 
 namespace Infrastructure.Repositories
 {
-    public class CustomerRepository : BaseRepository<Customer>, ICustomerRepository
+    public class CustomerRepository : SpecificationRepository<Customer>, ICustomerRepository
     {
         public CustomerRepository(SampleContext dbContext) : base(dbContext)
         {
