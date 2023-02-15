@@ -1,7 +1,7 @@
-﻿using Core.SpecificationPattern.Expressions;
+﻿using SpecificationPatternRepository.Core.Expressions;
 using System.Linq.Expressions;
 
-namespace Core.SpecificationPattern.Interfaces
+namespace SpecificationPatternRepository.Core.Interfaces
 {
     public interface IBaseSpecification<T>
     {

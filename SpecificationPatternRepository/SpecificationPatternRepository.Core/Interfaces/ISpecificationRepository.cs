@@ -1,6 +1,6 @@
 ﻿using BaseRepository.Core;
 
-namespace Core.SpecificationPattern.Interfaces
+namespace SpecificationPatternRepository.Core.Interfaces
 {
     public interface ISpecificationRepository<T> : IBaseRepository<T>
     {

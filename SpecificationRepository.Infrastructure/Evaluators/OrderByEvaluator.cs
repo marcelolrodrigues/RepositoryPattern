@@ -1,5 +1,5 @@
-﻿using Core.SpecificationPattern.Expressions;
-using Core.SpecificationPattern.Interfaces;
+﻿using SpecificationPatternRepository.Core.Expressions;
+using SpecificationPatternRepository.Core.Interfaces;
 
 namespace SpecificationRepository.Infrastructure.Evaluators
 {

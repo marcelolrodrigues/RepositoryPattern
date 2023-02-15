@@ -1,6 +1,6 @@
 ﻿using System.Linq.Expressions;
 
-namespace Core.SpecificationPattern.Expressions
+namespace SpecificationPatternRepository.Core.Expressions
 {
     public class OrderExpression<T>
     {

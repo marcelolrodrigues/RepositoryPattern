@@ -1,4 +1,4 @@
-﻿using Core.SpecificationPattern.Interfaces;
+﻿using SpecificationPatternRepository.Core.Interfaces;
 
 namespace SpecificationRepository.Infrastructure.Evaluators
 {

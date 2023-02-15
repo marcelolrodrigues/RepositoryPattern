@@ -1,4 +1,4 @@
-﻿namespace Core.SpecificationPattern.Interfaces
+﻿namespace SpecificationPatternRepository.Core.Interfaces
 {
     public interface IEvaluator<T>
     {

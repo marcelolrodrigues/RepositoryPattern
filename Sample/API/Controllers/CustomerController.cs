@@ -1,9 +1,9 @@
 ﻿using API.Models;
 using API.Services;
 using Core.Entities;
-using Core.SpecificationPattern;
-using Core.SpecificationPattern.Expressions;
 using Microsoft.AspNetCore.Mvc;
+using SpecificationPatternRepository.Core;
+using SpecificationPatternRepository.Core.Expressions;
 using System.Linq.Expressions;
 
 namespace API.Controllers

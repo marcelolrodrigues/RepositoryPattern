@@ -1,6 +1,6 @@
-﻿using Core.SpecificationPattern.Interfaces;
-using Infrastructure.RepositoryPattern;
+﻿using Infrastructure.RepositoryPattern;
 using Microsoft.EntityFrameworkCore;
+using SpecificationPatternRepository.Core.Interfaces;
 
 namespace SpecificationRepository.Infrastructure
 {

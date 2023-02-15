@@ -1,8 +1,8 @@
-﻿using Core.SpecificationPattern.Expressions;
-using Core.SpecificationPattern.Interfaces;
+﻿using SpecificationPatternRepository.Core.Expressions;
+using SpecificationPatternRepository.Core.Interfaces;
 using System.Linq.Expressions;
 
-namespace Core.SpecificationPattern
+namespace SpecificationPatternRepository.Core
 {
     public class BaseSpecification<T> : IBaseSpecification<T>
     {

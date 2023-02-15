@@ -1,5 +1,5 @@
 ﻿using SpecificationRepository.Infrastructure.Evaluators;
-using Core.SpecificationPattern.Interfaces;
+using SpecificationPatternRepository.Core.Interfaces;
 
 namespace SpecificationRepository.Infrastructure
 {
