@@ -1,7 +1,7 @@
-﻿using SpecificationRepository.Infrastructure.Evaluators;
-using SpecificationPatternRepository.Core.Interfaces;
+﻿using SpecificationPatternRepository.Core.Interfaces;
+using SpecificationPatternRepository.Infrastructure.Evaluators;
 
-namespace SpecificationRepository.Infrastructure
+namespace SpecificationPatternRepository.Infrastructure
 {
     public class SpecificationEvaluator<T>
     {

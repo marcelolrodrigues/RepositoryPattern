@@ -1,6 +1,6 @@
 ﻿using SpecificationPatternRepository.Core.Interfaces;
 
-namespace SpecificationRepository.Infrastructure.Evaluators
+namespace SpecificationPatternRepository.Infrastructure.Evaluators
 {
     public class WhereEvaluator<T> : IEvaluator<T>
     {

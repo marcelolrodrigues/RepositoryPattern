@@ -1,6 +1,6 @@
 ﻿using Core.Entities;
 using Core.Interfaces.Repositories;
-using SpecificationRepository.Infrastructure;
+using SpecificationPatternRepository.Infrastructure;
 
 namespace Infrastructure.Repositories
 {

@@ -2,7 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using SpecificationPatternRepository.Core.Interfaces;
 
-namespace SpecificationRepository.Infrastructure
+namespace SpecificationPatternRepository.Infrastructure
 {
     public class SpecificationRepository<T> : BaseRepository<T>, ISpecificationRepository<T> where T : class
     {
@@ -11,7 +11,7 @@ namespace SpecificationRepository.Infrastructure
 
         public SpecificationRepository(DbContext context) : base(context)
         {
-            this._context = context;
+            _context = context;
             SpecificationEvaluator = SpecificationEvaluator<T>.Instance;
         }
 
@@ -24,8 +24,8 @@ namespace SpecificationRepository.Infrastructure
 
         private IQueryable<T> GetQuery(IBaseSpecification<T> specification)
         {
-            IQueryable<T> query =  SpecificationEvaluator.GetQuery(
-                _context.Set<T>().AsQueryable(), 
+            IQueryable<T> query = SpecificationEvaluator.GetQuery(
+                _context.Set<T>().AsQueryable(),
                 specification
             );
             return query;
