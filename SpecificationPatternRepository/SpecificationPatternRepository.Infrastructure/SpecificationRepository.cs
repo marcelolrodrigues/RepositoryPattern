@@ -1,4 +1,4 @@
-﻿using Infrastructure.RepositoryPattern;
+﻿using BaseRepository.Infrastructure;
 using Microsoft.EntityFrameworkCore;
 using SpecificationPatternRepository.Core.Interfaces;
 

@@ -1,7 +1,7 @@
 ﻿using BaseRepository.Core;
 using Microsoft.EntityFrameworkCore;
 
-namespace Infrastructure.RepositoryPattern
+namespace BaseRepository.Infrastructure
 {
     public class BaseRepository<T> : IBaseRepository<T> where T : class
     {
@@ -10,11 +10,11 @@ namespace Infrastructure.RepositoryPattern
 
         public BaseRepository(DbContext dbContext)
         {
-            this._dbContext = dbContext;
-            this._set = dbContext.Set<T>();
+            _dbContext = dbContext;
+            _set = dbContext.Set<T>();
         }
 
-        public async Task<T> CreateAsync(T entity) 
+        public async Task<T> CreateAsync(T entity)
         {
             await _set.AddAsync(entity);
             await SaveChangesAsync();
