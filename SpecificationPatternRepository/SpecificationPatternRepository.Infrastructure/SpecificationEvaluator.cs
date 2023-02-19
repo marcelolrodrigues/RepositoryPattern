@@ -13,7 +13,8 @@ namespace SpecificationPatternRepository.Infrastructure
             Evaluators = new List<IEvaluator<T>>()
             {
                 WhereEvaluator<T>.Instance,
-                OrderByEvaluator<T>.Instance
+                OrderByEvaluator<T>.Instance,
+                IncludeEvaluator<T>.Instance,
             };
         }
 

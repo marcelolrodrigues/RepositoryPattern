@@ -55,7 +55,7 @@ namespace API.Controllers
                             OrderByExpression = cust => cust.Id 
                         }
                     }
-                );
+                ).Include(cos => cos.Stores);
 
             List<Customer> outputCustomer = await _customerService.FindWithSpecification(spec);
             return Ok(outputCustomer);
