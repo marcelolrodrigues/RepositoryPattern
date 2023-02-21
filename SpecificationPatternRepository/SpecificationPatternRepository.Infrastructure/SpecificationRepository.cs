@@ -1,4 +1,5 @@
 ﻿using BaseRepository.Infrastructure;
+using Core.Entities;
 using Microsoft.EntityFrameworkCore;
 using SpecificationPatternRepository.Core.Interfaces;
 
@@ -17,6 +18,8 @@ namespace SpecificationPatternRepository.Infrastructure
 
         public async Task<List<T>> ListWithSpecification(IBaseSpecification<T> specification)
         {
+            List<Customer> asd = await _context.Set<Customer>().Include(x => x.Stores).ToListAsync();
+
             IQueryable<T> query = GetQuery(specification);
             var list = await query.ToListAsync();
             return list;

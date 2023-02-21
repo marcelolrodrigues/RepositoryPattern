@@ -43,6 +43,7 @@ namespace API.Controllers
         public async Task<IActionResult> ListWithSpecification()
         {
             BaseSpecification<Customer> spec = new BaseSpecification<Customer>();
+            Expression<Func<Customer, IEnumerable<Store>>> asd = x => x.Stores;
             spec.Where(
                     new List<Expression<Func<Customer, bool>>>(){
                         x => x.Name == "marcelo"
@@ -50,13 +51,22 @@ namespace API.Controllers
                 ).OrderBy(
                     new List<OrderExpression<Customer>>()
                     {
-                        new OrderExpression<Customer>(){ 
-                            OrderBy = OrderBy.Ascending, 
-                            OrderByExpression = cust => cust.Id 
+                        new OrderExpression<Customer>(){
+                            OrderBy = OrderBy.Ascending,
+                            OrderByExpression = cust => cust.Id
                         }
                     }
-                ).Include(cos => cos.Stores);
-
+                ).Include(
+                    new List<SpecificationPatternRepository.Core.Expressions.IncludeExpression>()
+                    {
+                        new SpecificationPatternRepository.Core.Expressions.IncludeExpression()
+                        {
+                            LambdaExpression = asd,
+                            EntityType = typeof(Customer),
+                            PropertyType = typeof(IEnumerable<Store>)
+                        }
+                    }
+                );
             List<Customer> outputCustomer = await _customerService.FindWithSpecification(spec);
             return Ok(outputCustomer);
         }

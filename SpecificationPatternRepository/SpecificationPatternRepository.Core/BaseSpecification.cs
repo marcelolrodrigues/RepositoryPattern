@@ -8,7 +8,7 @@ namespace SpecificationPatternRepository.Core
     {
         public List<Expression<Func<T, bool>>> WhereExpressions { get; private set; }
         public List<OrderExpression<T>> OrderByExpressions { get; private set; }
-        public List<Expression<Func<T, object>>> IncludeExpressions { get; private set; }
+        public List<IncludeExpression> IncludeExpressions { get; private set; }
 
         public BaseSpecification<T> Where(List<Expression<Func<T, bool>>> expression)
         {
@@ -22,9 +22,9 @@ namespace SpecificationPatternRepository.Core
             return this;
         }
 
-        public BaseSpecification<T> Include(Expression<Func<T, object>> includeExpression)
+        public BaseSpecification<T> Include(List<IncludeExpression> includeExpressions)
         {
-            IncludeExpressions.Add(includeExpression);
+            IncludeExpressions = includeExpressions;
             return this;
         }
     }
