@@ -44,29 +44,17 @@ namespace API.Controllers
         {
             BaseSpecification<Customer> spec = new BaseSpecification<Customer>();
             Expression<Func<Customer, IEnumerable<Store>>> asd = x => x.Stores;
-            spec.Where(
-                    new List<Expression<Func<Customer, bool>>>(){
-                        x => x.Name == "marcelo"
-                    }
-                ).OrderBy(
-                    new List<OrderExpression<Customer>>()
+            spec.SpecificationBuilder
+                .Where(x => x.Name == "marcelo")
+                .Include(
+                    new IncludeExpression()
                     {
-                        new OrderExpression<Customer>(){
-                            OrderBy = OrderBy.Ascending,
-                            OrderByExpression = cust => cust.Id
-                        }
+                        LambdaExpression = asd,
+                        EntityType = typeof(Customer),
+                        PropertyType = typeof(IEnumerable<Store>)
                     }
-                ).Include(
-                    new List<SpecificationPatternRepository.Core.Expressions.IncludeExpression>()
-                    {
-                        new SpecificationPatternRepository.Core.Expressions.IncludeExpression()
-                        {
-                            LambdaExpression = asd,
-                            EntityType = typeof(Customer),
-                            PropertyType = typeof(IEnumerable<Store>)
-                        }
-                    }
-                );
+                ).OrderBy(cust => cust.Name)
+                .ThenByDescending(cust => cust.Address);
             List<Customer> outputCustomer = await _customerService.FindWithSpecification(spec);
             return Ok(outputCustomer);
         }

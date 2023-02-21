@@ -6,26 +6,18 @@ namespace SpecificationPatternRepository.Core
 {
     public class BaseSpecification<T> : IBaseSpecification<T>
     {
-        public List<Expression<Func<T, bool>>> WhereExpressions { get; private set; }
-        public List<OrderExpression<T>> OrderByExpressions { get; private set; }
-        public List<IncludeExpression> IncludeExpressions { get; private set; }
+        public List<Expression<Func<T, bool>>> WhereExpressions { get; set; }
+        public List<OrderExpression<T>> OrderByExpressions { get; set; }
+        public List<IncludeExpression> IncludeExpressions { get; set; }
 
-        public BaseSpecification<T> Where(List<Expression<Func<T, bool>>> expression)
+        public SpecificationBuilder<T> SpecificationBuilder { get; }
+        
+        public BaseSpecification()
         {
-            WhereExpressions = expression;
-            return this;
-        }
-
-        public BaseSpecification<T> OrderBy(List<OrderExpression<T>> orderExpressions)
-        {
-            OrderByExpressions = orderExpressions;
-            return this;
-        }
-
-        public BaseSpecification<T> Include(List<IncludeExpression> includeExpressions)
-        {
-            IncludeExpressions = includeExpressions;
-            return this;
+            WhereExpressions = new List<Expression<Func<T, bool>>>();
+            OrderByExpressions = new List<OrderExpression<T>>();
+            IncludeExpressions = new List<IncludeExpression>();
+            SpecificationBuilder = new SpecificationBuilder<T>(this);
         }
     }
 }

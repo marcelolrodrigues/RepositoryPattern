@@ -5,12 +5,14 @@ namespace SpecificationPatternRepository.Core.Expressions
     public class OrderExpression<T>
     {
         public Expression<Func<T, object>> OrderByExpression { get; set; }
-        public OrderBy OrderBy { get; set; }
+        public OrderByType OrderType { get; set; }
     }
 
-    public enum OrderBy
+    public enum OrderByType
     {
-        Ascending,
-        Descending
+        OrderBy,
+        OrderByDescending,
+        ThenBy,
+        ThenByDescending
     }
 }
