@@ -1,4 +1,5 @@
-﻿using SpecificationPatternRepository.Core.Interfaces;
+﻿using SpecificationPatternRepository.Core.Expressions;
+using SpecificationPatternRepository.Core.Interfaces;
 
 namespace SpecificationPatternRepository.Infrastructure.Evaluators
 {
@@ -8,8 +9,8 @@ namespace SpecificationPatternRepository.Infrastructure.Evaluators
 
         public IQueryable<T> GetQuery(IQueryable<T> query, IBaseSpecification<T> specification)
         {
-            foreach (var where in specification.WhereExpressions)
-                query = query.Where(where);
+            foreach (WhereClause<T> clause in specification.WhereClauses)
+                query = query.Where(clause.WhereExpression);
             return query;
         }
     }

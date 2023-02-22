@@ -7,6 +7,7 @@ namespace SpecificationPatternRepository.Infrastructure
     public class SpecificationRepository<T> : BaseRepository<T>, ISpecificationRepository<T> where T : class
     {
         private readonly DbContext _context;
+
         private SpecificationEvaluator<T> SpecificationEvaluator;
 
         public SpecificationRepository(DbContext context) : base(context)

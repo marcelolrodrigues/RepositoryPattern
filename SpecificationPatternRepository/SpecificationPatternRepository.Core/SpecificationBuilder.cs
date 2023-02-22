@@ -14,7 +14,9 @@ namespace SpecificationPatternRepository.Core
 
         public SpecificationBuilder<T> Where(Expression<Func<T, bool>> expression)
         {
-            BaseSpecification.WhereExpressions.Add(expression);
+            BaseSpecification.WhereClauses.Add(
+                new WhereClause<T>(expression)
+            );
             return this;
         }
 

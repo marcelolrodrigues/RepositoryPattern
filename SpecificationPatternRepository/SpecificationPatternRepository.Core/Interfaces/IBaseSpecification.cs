@@ -5,7 +5,7 @@ namespace SpecificationPatternRepository.Core.Interfaces
 {
     public interface IBaseSpecification<T>
     {
-        public List<Expression<Func<T, bool>>> WhereExpressions { get; }
+        public List<WhereClause<T>> WhereClauses { get; }
         public List<OrderExpression<T>> OrderByExpressions { get; }
         public List<IncludeExpression> IncludeExpressions { get; }
     }
