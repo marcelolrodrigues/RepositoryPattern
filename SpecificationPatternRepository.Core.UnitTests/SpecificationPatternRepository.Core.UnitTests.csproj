@@ -23,7 +23,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Sample\Core\Core.csproj" />
     <ProjectReference Include="..\SpecificationPatternRepository\SpecificationPatternRepository.Core\SpecificationPatternRepository.Core.csproj" />
   </ItemGroup>
 

@@ -11,7 +11,7 @@ namespace SpecificationPatternRepository.Core
         public List<IncludeExpression> IncludeExpressions { get; set; }
 
         public SpecificationBuilder<T> SpecificationBuilder { get; }
-        public InMemorySpecificationEvaluator InMemorySpecificationEvaluator { get; set; }
+        private InMemorySpecificationEvaluator InMemorySpecificationEvaluator { get; set; }
 
         public BaseSpecification()
         {
@@ -20,6 +20,12 @@ namespace SpecificationPatternRepository.Core
             IncludeExpressions = new List<IncludeExpression>();
             SpecificationBuilder = new SpecificationBuilder<T>(this);
             InMemorySpecificationEvaluator = new InMemorySpecificationEvaluator();
+        }
+
+        public IEnumerable<T> Evaluate(IEnumerable<T> set, IBaseSpecification<T> specification)
+        {
+            IEnumerable<T> result = InMemorySpecificationEvaluator.Evaluate(set, specification);
+            return result;
         }
     }
 }
