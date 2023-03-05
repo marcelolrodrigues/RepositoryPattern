@@ -23,7 +23,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BaseRepository.Core", "Base
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BaseRepository.Infrastructure", "BaseRepository\BaseRepository.Infrastructure\BaseRepository.Infrastructure.csproj", "{7D9614CC-6675-473F-BACF-FEB60803308D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SpecificationPatternRepository.Core.UnitTests", "SpecificationPatternRepository.Core.UnitTests\SpecificationPatternRepository.Core.UnitTests.csproj", "{CA013271-F689-4DE3-B930-FD1EF1FDDBBC}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SpecificationPatternRepository.Core.UnitTests", "SpecificationPatternRepository.Core.UnitTests\SpecificationPatternRepository.Core.UnitTests.csproj", "{CA013271-F689-4DE3-B930-FD1EF1FDDBBC}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Docker", "Docker", "{A0DD0062-4647-48F7-AE74-608512F64988}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
