@@ -12,8 +12,23 @@ namespace SpecificationPatternRepository.Core.UnitTests
         {
             StoreByIdSpec spec = new StoreByIdSpec(10);
             List<Store> stores = StoreSeed.Get();
-            IEnumerable<Store> store = spec.Evaluate(stores, spec);
-            store.FirstOrDefault().Id.Should().Be(10);
+            
+            Store store = spec.Evaluate(stores, spec).FirstOrDefault();
+            
+            store?.Id.Should().Be(10);
+        }
+
+        [Fact]
+        public void ReturnsStoreWithIdFrom15To30_GivenStoresByIdListSpec()
+        {
+            IEnumerable<int> ids = Enumerable.Range(15, 16);
+            StoreByIdListSpec spec = new StoreByIdListSpec(ids);
+            
+            IEnumerable<Store> stores = spec.Evaluate(StoreSeed.Get(), spec);
+            
+            stores.Count().Should().Be(16);
+            stores.OrderBy(x => x.Id).First().Id.Equals(15);
+            stores.OrderBy(x => x.Id).Last().Id.Should().Be(30);
         }
     }
 }
