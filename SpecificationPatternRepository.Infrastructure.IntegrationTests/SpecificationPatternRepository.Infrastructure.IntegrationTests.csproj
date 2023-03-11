@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>net7.0</TargetFramework>
@@ -25,7 +25,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\SpecificationPatternRepository.Core.UnitTests\SpecificationPatternRepository.Core.UnitTests.csproj" />
+    <ProjectReference Include="..\SpecificationPatternRepository\SpecificationPatternRepository.Core\tests\SpecificationPatternRepository.Core.UnitTests.csproj" />
     <ProjectReference Include="..\SpecificationPatternRepository\SpecificationPatternRepository.Infrastructure\SpecificationPatternRepository.Infrastructure.csproj" />
   </ItemGroup>
 
