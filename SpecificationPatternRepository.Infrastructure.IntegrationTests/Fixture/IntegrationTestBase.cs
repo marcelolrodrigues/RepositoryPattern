@@ -1,22 +1,19 @@
-﻿using BaseRepository.Infrastructure;
+﻿
 using SpecificationPatternRepository.Core.UnitTests.Fixture.Entities;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace SpecificationPatternRepository.Infrastructure.IntegrationTests.Fixture
 {
-    public class IntegrationTestBase
+    public class IntegrationTestBase : IClassFixture<SharedDatabaseFixture>
     {
         public TestDbContext context { get; set; }
-        protected BaseRepository<Store> StoreRepository;
-        protected BaseRepository<Address> AddressRepository;
+        protected RepositoryOfT<Store> StoreRepository;
+        protected RepositoryOfT<Address> AddressRepository;
 
-        public IntegrationTestBase(SharedDatabaseFixture fixture, ISpec)
+        public IntegrationTestBase(SharedDatabaseFixture fixture)
         {
-
+            context = fixture.CreateContext();
+            StoreRepository = new RepositoryOfT<Store>(context);
+            AddressRepository = new RepositoryOfT<Address>(context);
         }
     }
 }
