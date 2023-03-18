@@ -23,4 +23,9 @@
     </PackageReference>
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\Repository\src\BaseRepository.Infrastructure\BaseRepository.Infrastructure.csproj" />
+    <ProjectReference Include="..\..\..\Repository\src\SpecificationPatternRepository.Core\SpecificationPatternRepository.Core.csproj" />
+  </ItemGroup>
+
 </Project>

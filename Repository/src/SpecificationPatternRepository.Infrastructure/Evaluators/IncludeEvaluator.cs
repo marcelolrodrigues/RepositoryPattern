@@ -1,5 +1,4 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using SpecificationPatternRepository.Core.Expressions;
 using SpecificationPatternRepository.Core.Interfaces;
 using System.Linq.Expressions;

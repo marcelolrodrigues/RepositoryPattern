@@ -11,8 +11,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\Sample\Core\Core.csproj" />
-    <ProjectReference Include="..\BaseRepository.Core\BaseRepository.Core.csproj" />
+    <ProjectReference Include="..\..\..\Sample\Core\Core.csproj" />
   </ItemGroup>
 
 </Project>
