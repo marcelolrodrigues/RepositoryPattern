@@ -9,7 +9,6 @@ namespace SpecificationPatternRepository.Infrastructure.IntegrationTests
         public RepositoryOfT_AnyAsync(SharedDatabaseFixture sbf) : base(sbf) 
         {
             Console.WriteLine("addsasd");
-
         }
 
         [Fact]

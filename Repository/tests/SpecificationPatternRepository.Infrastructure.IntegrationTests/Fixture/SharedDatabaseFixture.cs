@@ -10,7 +10,8 @@ namespace SpecificationPatternRepository.Infrastructure.IntegrationTests.Fixture
 
         private static readonly object _lock = new object();
         private static bool _databaseInitialized = false;
-        private const string ConnectionStringDocker = "Data Source=databaseEFCore;Initial Catalog=SpecificationEFCoreTestsDB;PersistSecurityInfo=True;User ID=sa;Password=P@ssW0rd!";
+        //private const string ConnectionStringDocker = "Server=(localdb)\\mssqllocaldb;Integrated Security=SSPI;Initial Catalog=SpecificationEFTestsDB;ConnectRetryCount=0";
+        private const string ConnectionStringDocker = "Data Source=databaseEFCore;Initial Catalog=SpecificationEFCoreTestsDB;PersistSecurityInfo=True;User ID=sa;Password=P@ssW0rd!;Encrypt=False";
 
         public SharedDatabaseFixture()
         {
