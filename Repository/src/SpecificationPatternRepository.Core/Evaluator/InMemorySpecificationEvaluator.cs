@@ -4,7 +4,8 @@ namespace SpecificationPatternRepository.Core.Evaluator
 {
     public class InMemorySpecificationEvaluator
     {
-        public List<IInMemoryEvaluator> Evaluators { get; }
+        public static InMemorySpecificationEvaluator Instance { get; } = new InMemorySpecificationEvaluator();
+        private List<IInMemoryEvaluator> Evaluators { get; }
 
         public InMemorySpecificationEvaluator()
         {

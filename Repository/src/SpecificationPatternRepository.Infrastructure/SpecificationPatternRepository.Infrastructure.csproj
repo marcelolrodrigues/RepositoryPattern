@@ -12,6 +12,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\BaseRepository.Infrastructure\BaseRepository.Infrastructure.csproj" />
+    <ProjectReference Include="..\SpecificationPatternRepository.Core\SpecificationPatternRepository.Core.csproj" />
   </ItemGroup>
 
 </Project>

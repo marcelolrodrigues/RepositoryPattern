@@ -6,11 +6,11 @@ using System.Reflection;
 
 namespace SpecificationPatternRepository.Infrastructure.Evaluators
 {
-    public class IncludeEvaluator<T> : IEvaluator<T>
+    public class IncludeEvaluator : IEvaluator
     {
-        public static IncludeEvaluator<T> Instance { get; } = new IncludeEvaluator<T>();
+        public static IncludeEvaluator Instance { get; } = new IncludeEvaluator();
 
-        public IQueryable<T> GetQuery(IQueryable<T> query, IBaseSpecification<T> specification)
+        public IQueryable<T> GetQuery<T>(IQueryable<T> query, IBaseSpecification<T> specification)
         {
             var IncludeMethodInfo = typeof(EntityFrameworkQueryableExtensions)
                 .GetTypeInfo().GetDeclaredMethods(nameof(EntityFrameworkQueryableExtensions.Include))

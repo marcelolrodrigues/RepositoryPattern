@@ -3,11 +3,11 @@ using SpecificationPatternRepository.Core.Interfaces;
 
 namespace SpecificationPatternRepository.Infrastructure.Evaluators
 {
-    public class OrderByEvaluator<T> : IEvaluator<T>
+    public class OrderByEvaluator : IEvaluator
     {
-        public static OrderByEvaluator<T> Instance { get; } = new OrderByEvaluator<T>();
+        public static OrderByEvaluator Instance { get; } = new OrderByEvaluator();
 
-        public IQueryable<T> GetQuery(IQueryable<T> query, IBaseSpecification<T> spec)
+        public IQueryable<T> GetQuery<T>(IQueryable<T> query, IBaseSpecification<T> spec)
         {
             IOrderedQueryable<T>? orderedQuery = null;
             foreach (OrderExpression<T> orderExpression in spec.OrderByExpressions)

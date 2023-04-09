@@ -1,4 +1,5 @@
-﻿using SpecificationPatternRepository.Core.Interfaces;
+﻿using SpecificationPatternRepository.Core.Evaluator;
+using SpecificationPatternRepository.Core.Interfaces;
 using SpecificationPatternRepository.Infrastructure.Evaluators;
 
 namespace SpecificationPatternRepository.Infrastructure
@@ -6,21 +7,21 @@ namespace SpecificationPatternRepository.Infrastructure
     public class SpecificationEvaluator<T>
     {
         public static SpecificationEvaluator<T> Instance { get; } = new SpecificationEvaluator<T>();
-        private readonly List<IEvaluator<T>> Evaluators;
+        private readonly List<IEvaluator> Evaluators;
 
         public SpecificationEvaluator()
         {
-            Evaluators = new List<IEvaluator<T>>()
+            Evaluators = new List<IEvaluator>()
             {
-                WhereEvaluator<T>.Instance,
-                OrderByEvaluator<T>.Instance,
-                IncludeEvaluator<T>.Instance,
+                WhereClauseEvaluator.Instance,
+                OrderByEvaluator.Instance,
+                IncludeEvaluator.Instance,
             };
         }
 
         public IQueryable<T> GetQuery(IQueryable<T> query, IBaseSpecification<T> specification)
         {
-            foreach (IEvaluator<T> evaluator in Evaluators)
+            foreach (IEvaluator evaluator in Evaluators)
                 query = evaluator.GetQuery(query, specification);
             return query;
         }
