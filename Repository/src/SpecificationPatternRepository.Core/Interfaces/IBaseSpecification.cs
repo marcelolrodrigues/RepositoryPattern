@@ -1,12 +1,14 @@
 ﻿using SpecificationPatternRepository.Core.Expressions;
-using System.Linq.Expressions;
 
 namespace SpecificationPatternRepository.Core.Interfaces
 {
     public interface IBaseSpecification<T>
     {
-        public List<WhereClause<T>> WhereClauses { get; }
-        public List<OrderExpression<T>> OrderByExpressions { get; }
-        public List<IncludeExpression> IncludeExpressions { get; }
+        public List<WhereClause<T>> WhereClauses { get; set; }
+        public List<OrderExpression<T>> OrderByExpressions { get; set; }
+        public List<IncludeExpression> IncludeExpressions { get; set; }
+
+        public int? Skip { get; }
+        public int? Take { get; }
     }
 }

@@ -49,5 +49,21 @@ namespace SpecificationPatternRepository.Core
             BaseSpecification.IncludeExpressions.Add(includeExpressions);
             return this;
         }
+
+        public SpecificationBuilder<T> Skip(int skip)
+        {
+            if (BaseSpecification.Skip != null)
+                throw new Exception("Duplicated Skip");
+            this.BaseSpecification.Skip = skip;
+            return this;
+        }
+
+        public SpecificationBuilder<T> Take(int take)
+        {
+            if (BaseSpecification.Take != null)
+                throw new Exception("Duplicated Take");
+            this.BaseSpecification.Take = take;
+            return this;
+        }
     }
 }

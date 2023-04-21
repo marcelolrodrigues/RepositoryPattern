@@ -1,5 +1,4 @@
-﻿using SpecificationPatternRepository.Core.Interfaces;
-using SpecificationPatternRepository.Core.UnitTests.Fixture.Entities;
+﻿using SpecificationPatternRepository.Core.UnitTests.Fixture.Entities;
 
 namespace SpecificationPatternRepository.Core.UnitTests.Fixture.Specs
 {

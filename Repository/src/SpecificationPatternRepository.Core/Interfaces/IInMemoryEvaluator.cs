@@ -2,6 +2,6 @@
 {
     public interface IInMemoryEvaluator
     {
-        IEnumerable<T> Evaluate<T>(IEnumerable<T> query, IBaseSpecification<T> specification);
+        IEnumerable<T> Evaluate<T>(IEnumerable<T> set, IBaseSpecification<T> specification);
     }
 }

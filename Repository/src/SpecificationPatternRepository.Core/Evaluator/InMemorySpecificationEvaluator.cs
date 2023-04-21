@@ -11,7 +11,8 @@ namespace SpecificationPatternRepository.Core.Evaluator
         {
             Evaluators = new List<IInMemoryEvaluator>()
             {
-                WhereClauseEvaluator.Instance
+                WhereClauseEvaluator.Instance,
+                PaginationEvaluator.Instance,
             };
         }
 
