@@ -9,13 +9,11 @@ namespace SpecificationPatternRepository.Core
         public List<WhereClause<T>> WhereClauses { get; set; }
         public List<OrderExpression<T>> OrderByExpressions { get; set; }
         public List<IncludeExpression> IncludeExpressions { get; set; }
-
-        public SpecificationBuilder<T> SpecificationBuilder { get; }
-        
-        private InMemorySpecificationEvaluator InMemorySpecificationEvaluator { get; set; }
-
         public int? Skip { get; set; }
         public int? Take { get; set; }
+
+        public ISpecificationBuilder<T> SpecificationBuilder { get; }
+        private InMemorySpecificationEvaluator InMemorySpecificationEvaluator { get; set; }
 
         public BaseSpecification()
         {
@@ -25,6 +23,7 @@ namespace SpecificationPatternRepository.Core
             SpecificationBuilder = new SpecificationBuilder<T>(this);
             InMemorySpecificationEvaluator = new InMemorySpecificationEvaluator();
         }
+
 
         public IEnumerable<T> Evaluate(IEnumerable<T> set)
         {

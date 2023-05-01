@@ -1,9 +1,10 @@
 ﻿using SpecificationPatternRepository.Core.Expressions;
+using SpecificationPatternRepository.Core.Interfaces;
 using System.Linq.Expressions;
 
 namespace SpecificationPatternRepository.Core
 {
-    public class SpecificationBuilder<T>
+    public class SpecificationBuilder<T> : ISpecificationBuilder<T>
     {
         private BaseSpecification<T> BaseSpecification { get; }
 
@@ -12,7 +13,7 @@ namespace SpecificationPatternRepository.Core
             BaseSpecification = baseSpecification;
         }
 
-        public SpecificationBuilder<T> Where(Expression<Func<T, bool>> expression)
+        public ISpecificationBuilder<T> Where(Expression<Func<T, bool>> expression)
         {
             BaseSpecification.WhereClauses.Add(new WhereClause<T>(expression));
             return this;
@@ -44,13 +45,13 @@ namespace SpecificationPatternRepository.Core
             return ordSpec;
         }
 
-        public SpecificationBuilder<T> Include(IncludeExpression includeExpressions)
+        public ISpecificationBuilder<T> Include(IncludeExpression includeExpressions)
         {
             BaseSpecification.IncludeExpressions.Add(includeExpressions);
             return this;
         }
 
-        public SpecificationBuilder<T> Skip(int skip)
+        public ISpecificationBuilder<T> Skip(int skip)
         {
             if (BaseSpecification.Skip != null)
                 throw new Exception("Duplicated Skip");
@@ -58,7 +59,7 @@ namespace SpecificationPatternRepository.Core
             return this;
         }
 
-        public SpecificationBuilder<T> Take(int take)
+        public ISpecificationBuilder<T> Take(int take)
         {
             if (BaseSpecification.Take != null)
                 throw new Exception("Duplicated Take");

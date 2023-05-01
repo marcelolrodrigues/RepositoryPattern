@@ -24,7 +24,6 @@ namespace SpecificationPatternRepository.Core
             return this;
         }
 
-
         public OrderedSpecificationBuilder<T> ThenByDescending(Expression<Func<T, object>> orderExpression)
         {
             BaseSpecification.OrderByExpressions.Add(

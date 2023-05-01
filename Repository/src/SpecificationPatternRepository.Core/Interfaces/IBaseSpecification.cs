@@ -7,7 +7,6 @@ namespace SpecificationPatternRepository.Core.Interfaces
         public List<WhereClause<T>> WhereClauses { get; set; }
         public List<OrderExpression<T>> OrderByExpressions { get; set; }
         public List<IncludeExpression> IncludeExpressions { get; set; }
-
         public int? Skip { get; }
         public int? Take { get; }
     }
