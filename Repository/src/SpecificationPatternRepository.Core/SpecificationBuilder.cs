@@ -19,7 +19,7 @@ namespace SpecificationPatternRepository.Core
             return this;
         }
 
-        public OrderedSpecificationBuilder<T> OrderBy(Expression<Func<T, object>> orderExpressions)
+        public IOrderedSpecificationBuilder<T> OrderBy(Expression<Func<T, object>> orderExpressions)
         {
             BaseSpecification.OrderByExpressions.Add(
                 new OrderExpression<T>()
@@ -32,7 +32,7 @@ namespace SpecificationPatternRepository.Core
             return ordSpec;
         }
 
-        public OrderedSpecificationBuilder<T> OrderByDescending(Expression<Func<T, object>> orderExpressions)
+        public IOrderedSpecificationBuilder<T> OrderByDescending(Expression<Func<T, object>> orderExpressions)
         {
             BaseSpecification.OrderByExpressions.Add(
                 new OrderExpression<T>()

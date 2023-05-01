@@ -1,13 +1,14 @@
 ﻿using SpecificationPatternRepository.Core.Expressions;
+using SpecificationPatternRepository.Core.Interfaces;
 using System.Linq.Expressions;
 
 namespace SpecificationPatternRepository.Core
 {
-    public class OrderedSpecificationBuilder<T>
+    public class OrderedSpecificationBuilder<T> : SpecificationBuilder<T>, IOrderedSpecificationBuilder<T>
     {
         private BaseSpecification<T> BaseSpecification { get; }
 
-        public OrderedSpecificationBuilder(BaseSpecification<T> baseSpecification)
+        public OrderedSpecificationBuilder(BaseSpecification<T> baseSpecification) : base (baseSpecification)
         {
             BaseSpecification = baseSpecification;
         }

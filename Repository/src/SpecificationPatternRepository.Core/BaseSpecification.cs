@@ -24,7 +24,6 @@ namespace SpecificationPatternRepository.Core
             InMemorySpecificationEvaluator = new InMemorySpecificationEvaluator();
         }
 
-
         public IEnumerable<T> Evaluate(IEnumerable<T> set)
         {
             IEnumerable<T> result = InMemorySpecificationEvaluator.Evaluate(set, this);

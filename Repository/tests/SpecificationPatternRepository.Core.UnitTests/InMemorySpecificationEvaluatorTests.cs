@@ -41,8 +41,8 @@ namespace SpecificationPatternRepository.Core.UnitTests
         public void ReturnsSecondPageOfStoreNames_GivenStoreNamesPaginatedSpec()
         {
             // arrange
-            int pageNumber = 2;
             int pageSize = 10;
+            int pageNumber = 2;
             int skip = (pageNumber - 1) * pageSize;
             int take = pageSize;
             StoreNamesPaginatedSpec spec = new StoreNamesPaginatedSpec(skip, take);
@@ -55,6 +55,12 @@ namespace SpecificationPatternRepository.Core.UnitTests
             result.Count().Should().Be(take);
             result.First().Name.Should().Be("Store 11");
             result.Last().Name.Should().Be("Store 20");
+        }
+
+        [Fact]
+        public void ReturnsSecondPageOfStores_GivenStoresPaginatedSpec()
+        {
+
         }
     }
 }

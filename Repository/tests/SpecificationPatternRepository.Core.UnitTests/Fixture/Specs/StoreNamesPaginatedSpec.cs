@@ -6,7 +6,7 @@ namespace SpecificationPatternRepository.Core.UnitTests.Fixture.Specs
     {
         public StoreNamesPaginatedSpec(int skip, int take)
         {
-            SpecificationBuilder
+            SpecificationBuilder.OrderBy(strore => strore.Id)
                 .Skip(skip)
                 .Take(take);
         }
