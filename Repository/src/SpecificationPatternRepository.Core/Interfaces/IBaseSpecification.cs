@@ -10,4 +10,9 @@ namespace SpecificationPatternRepository.Core.Interfaces
         public int? Skip { get; }
         public int? Take { get; }
     }
+
+    public interface IBaseSpecification<T, TResult> : IBaseSpecification<T>
+    {
+        public List<SelectorClause<T, TResult>> SelectorClauses { get; set; }
+    }
 }

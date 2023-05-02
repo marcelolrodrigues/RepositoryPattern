@@ -30,4 +30,26 @@ namespace SpecificationPatternRepository.Core
             return result;
         }
     }
+
+    public class BaseSpecification<T, TResult> : BaseSpecification<T>, IBaseSpecification<T, TResult>
+    {
+        public List<SelectorClause<T, TResult>> SelectorClauses { get; set; }
+
+        public new SpecificationBuilder<T, TResult> SpecificationBuilder { get; }
+        private InMemorySpecificationEvaluator InMemorySpecificationEvaluator { get; set; }
+
+
+        public BaseSpecification()
+        {
+            SelectorClauses = new List<SelectorClause<T, TResult>>();
+            SpecificationBuilder = new SpecificationBuilder<T, TResult>(this);
+            InMemorySpecificationEvaluator = new InMemorySpecificationEvaluator();
+        }
+
+        public new IEnumerable<TResult> Evaluate(IEnumerable<T> set)
+        {
+            IEnumerable<TResult> result = InMemorySpecificationEvaluator.Evaluate(set, this);
+            return result;
+        }
+    }
 }

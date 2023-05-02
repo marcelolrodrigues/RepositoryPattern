@@ -6,7 +6,7 @@ namespace SpecificationPatternRepository.Core
 {
     public class SpecificationBuilder<T> : ISpecificationBuilder<T>
     {
-        private BaseSpecification<T> BaseSpecification { get; }
+        public BaseSpecification<T> BaseSpecification { get; }
 
         public SpecificationBuilder(BaseSpecification<T> baseSpecification)
         {
@@ -64,6 +64,23 @@ namespace SpecificationPatternRepository.Core
             if (BaseSpecification.Take != null)
                 throw new Exception("Duplicated Take");
             this.BaseSpecification.Take = take;
+            return this;
+        }
+    }
+
+    public class SpecificationBuilder<T, TResult> : SpecificationBuilder<T>, ISpecificationBuilder<T, TResult>
+    {
+        public new BaseSpecification<T, TResult> BaseSpecification { get; }
+
+        public SpecificationBuilder(BaseSpecification<T, TResult> baseSpecification) : base(baseSpecification)
+        {
+            BaseSpecification = baseSpecification;
+        }
+
+        public ISpecificationBuilder<T, TResult> Select(Expression<Func<T, TResult>> expression)
+        {
+            SelectorClause<T, TResult> selector = new SelectorClause<T, TResult>(expression);
+            BaseSpecification.SelectorClauses.Add(selector);
             return this;
         }
     }

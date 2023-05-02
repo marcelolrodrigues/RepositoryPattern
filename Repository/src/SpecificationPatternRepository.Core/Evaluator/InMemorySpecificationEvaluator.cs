@@ -22,5 +22,15 @@ namespace SpecificationPatternRepository.Core.Evaluator
                 set = eval.Evaluate(set, specification);
             return set;
         }
+
+        public IEnumerable<TResult> Evaluate<T, TResult>(IEnumerable<T> set, IBaseSpecification<T, TResult> specification)
+        {
+            foreach (IInMemoryEvaluator eval in Evaluators)
+                set = eval.Evaluate(set, specification);
+
+            IEnumerable<TResult> result = set.Select(specification.SelectorClauses.First().Expression.Compile());
+
+            return result;
+        }
     }
 }

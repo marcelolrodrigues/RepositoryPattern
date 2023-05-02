@@ -49,12 +49,12 @@ namespace SpecificationPatternRepository.Core.UnitTests
             IEnumerable<Store> repo = StoreSeed.Get();
 
             // act
-            IEnumerable<Store> result = spec.Evaluate(repo);
+            IEnumerable<string> result = spec.Evaluate(repo);
 
             // assert
             result.Count().Should().Be(take);
-            result.First().Name.Should().Be("Store 11");
-            result.Last().Name.Should().Be("Store 20");
+            result.First().Should().Be("Store 11");
+            result.Last().Should().Be("Store 20");
         }
 
         [Fact]
