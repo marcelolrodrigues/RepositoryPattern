@@ -2,6 +2,9 @@
 {
     public class StoreSeed
     {
+        public const int ORDERED_BY_NAME_DESC_FOR_COMPANY2_FIRST_ID = 99;
+        public const int ORDERED_BY_NAME_DESC_FOR_COMPANY2_LAST_ID = 98;
+
         public static List<Store> Get()
         {
             var stores = new List<Store>();
