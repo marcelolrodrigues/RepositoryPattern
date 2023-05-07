@@ -89,5 +89,40 @@ namespace SpecificationPatternRepository.Core.UnitTests
             stores.First().Id.Should().Be(StoreSeed.ORDERED_BY_NAME_DESC_FOR_COMPANY2_FIRST_ID);
             stores.Last().Id.Should().Be(StoreSeed.ORDERED_BY_NAME_DESC_FOR_COMPANY2_LAST_ID);
         }
+
+        [Fact]
+        public void ReturnsOrderStoresByNameDescThenByIdForCompanyWithId2_GivenStoresByCompanyOrderedDescByNameThenByIdSpec()
+        {
+            // arrange 
+            StoresByCompanyOrderedDescByNameThenByIdSpec specification =
+                new StoresByCompanyOrderedDescByNameThenByIdSpec(2);
+
+            // act
+            IEnumerable<Store> stores = specification.Evaluate(StoreSeed.Get());
+
+            // assert
+            stores.First().Id.Should().Be(99);
+            stores.Last().Id.Should().Be(98);
+        }
+
+        [Fact]
+        public void ReturnsSecondPageOfStoresForCompanyWithId2_GivenStoresByCompanyPaginatedOrderedDescByNameSpec()
+        {
+            // arrange
+            int pageNumber = 2;
+            int pageSize = 10;
+            int skip = pageSize * (pageNumber - 1);
+            int take = pageSize;
+            StoresByCompanyPaginatedOrderedDescByNameSpec specification =
+                new StoresByCompanyPaginatedOrderedDescByNameSpec(2, skip, take);
+
+            // act
+            IEnumerable<Store> stores = specification.Evaluate(StoreSeed.Get());
+
+            // assert
+            stores.Count().Should().Be(take);
+            stores.First().Id.Should().Be(StoreSeed.ORDERED_BY_NAME_DESC_FOR_COMPANY2_PAGE2_FIRST_ID);
+            stores.Last().Id.Should().Be(StoreSeed.ORDERED_BY_NAME_DESC_FOR_COMPANY2_PAGE2_LAST_ID);
+        }
     }
 }

@@ -4,6 +4,8 @@
     {
         public const int ORDERED_BY_NAME_DESC_FOR_COMPANY2_FIRST_ID = 99;
         public const int ORDERED_BY_NAME_DESC_FOR_COMPANY2_LAST_ID = 98;
+        public const int ORDERED_BY_NAME_DESC_FOR_COMPANY2_PAGE2_FIRST_ID = 89;
+        public const int ORDERED_BY_NAME_DESC_FOR_COMPANY2_PAGE2_LAST_ID = 80;
 
         public static List<Store> Get()
         {
