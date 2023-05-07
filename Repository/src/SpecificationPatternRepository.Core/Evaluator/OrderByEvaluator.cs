@@ -1,4 +1,5 @@
-﻿using SpecificationPatternRepository.Core.Expressions;
+﻿using SpecificationPatternRepository.Core.Exceptions;
+using SpecificationPatternRepository.Core.Expressions;
 using SpecificationPatternRepository.Core.Interfaces;
 
 namespace SpecificationPatternRepository.Core.Evaluator
@@ -7,13 +8,21 @@ namespace SpecificationPatternRepository.Core.Evaluator
     {
         public static OrderByEvaluator Instance { get; } = new OrderByEvaluator();
 
-        public IQueryable<T> GetQuery<T>(IQueryable<T> query, IBaseSpecification<T> spec)
+        public IQueryable<T> GetQuery<T>(IQueryable<T> query, IBaseSpecification<T> specification)
         {
-            if (spec.OrderByExpressions == null)
+            if (specification.OrderByExpressions.Count == 0)
                 return query;
 
+            if(specification.OrderByExpressions.Count(
+                spec => spec.OrderType == OrderByType.OrderBy 
+                || spec.OrderType == OrderByType.OrderByDescending
+            ) > 1)
+            {
+                throw new DuplicateOrderChainException();
+            }
+
             IOrderedQueryable<T>? orderedQuery = null;
-            foreach (OrderExpression<T> orderExpression in spec.OrderByExpressions)
+            foreach (OrderExpression<T> orderExpression in specification.OrderByExpressions)
             {
                 if (orderExpression.OrderType == OrderByType.OrderBy)
                     orderedQuery = query.OrderBy(orderExpression.OrderByExpression);
@@ -30,8 +39,16 @@ namespace SpecificationPatternRepository.Core.Evaluator
 
         public IEnumerable<T> Evaluate<T>(IEnumerable<T> set, IBaseSpecification<T> specification)
         {
-            if (specification.OrderByExpressions == null) 
+            if (specification.OrderByExpressions.Count == 0)
                 return set;
+
+            if(specification.OrderByExpressions.Count(
+                spec => spec.OrderType == OrderByType.OrderBy 
+                || spec.OrderType == OrderByType.OrderByDescending
+            ) > 1)
+            {
+                throw new DuplicateOrderChainException();
+            }
 
             IOrderedEnumerable<T>? orderedSet = null;
             foreach (OrderExpression<T> orderExpression in specification.OrderByExpressions)

@@ -1,4 +1,5 @@
 using FluentAssertions;
+using SpecificationPatternRepository.Core.Exceptions;
 using SpecificationPatternRepository.Core.UnitTests.Fixture.Entities;
 using SpecificationPatternRepository.Core.UnitTests.Fixture.Entities.Seeds;
 using SpecificationPatternRepository.Core.UnitTests.Fixture.Specs;
@@ -123,6 +124,71 @@ namespace SpecificationPatternRepository.Core.UnitTests
             stores.Count().Should().Be(take);
             stores.First().Id.Should().Be(StoreSeed.ORDERED_BY_NAME_DESC_FOR_COMPANY2_PAGE2_FIRST_ID);
             stores.Last().Id.Should().Be(StoreSeed.ORDERED_BY_NAME_DESC_FOR_COMPANY2_PAGE2_LAST_ID);
+        }
+
+        [Fact]
+        public void ReturnsSecondPageOfStoresForCompanyWithId2_GivenStoresByCompanyPaginatedSpec()
+        {
+            // arrange
+            int pageNumber = 2;
+            int pageSize = 10;
+            int skip = pageSize * (pageNumber - 1);
+            int take = pageSize;
+            StoresByCompanyPaginatedSpec specification = 
+                new StoresByCompanyPaginatedSpec(2, skip, take);
+
+            // act
+            IEnumerable<Store> stores = specification.Evaluate(StoreSeed.Get());
+
+            // assert
+            stores.Count().Should().Be(take);
+            stores.OrderBy(x => x.Id).First().Id.Should().Be(61);
+            stores.OrderBy(x => x.Id).Last().Id.Should().Be(70);
+        }
+
+        [Fact]
+        public void ReturnsOrderedStores_GivenStoresOrderedSpecByName()
+        {
+            // arrange
+            StoresOrderedSpecByName specification =
+                new StoresOrderedSpecByName();
+
+            // act
+            IEnumerable<Store> stores = specification.Evaluate(StoreSeed.Get());
+
+            // assert
+            stores.First().Id.Should().Be(StoreSeed.ORDERED_BY_NAME_FIRST_ID);
+            stores.Last().Id.Should().Be(StoreSeed.ORDERED_BY_NAME_LAST_ID);
+        }
+
+        [Fact]
+        public void ReturnsOrderedStores_GivenStoresOrderedDescendingByNameSpec()
+        {
+            // arrange
+            StoresOrderedDescendingByNameSpec specification =
+                new StoresOrderedDescendingByNameSpec();
+
+            // act
+            IEnumerable<Store> stores = specification.Evaluate(StoreSeed.Get());
+
+            // assert
+            stores.First().Id.Should().Be(StoreSeed.ORDERED_BY_NAME_DESC_FIRST_ID);
+            stores.Last().Id.Should().Be(StoreSeed.ORDERED_BY_NAME_DESC_LAST_ID);
+        }
+
+        [Fact]
+        public void ThrowsDuplicateOrderChainException_GivenSpecWithMultipleOrderChains()
+        {
+            // arrange
+            StoresOrderedTwoChainsSpec spec = new StoresOrderedTwoChainsSpec();
+
+            // act
+            Action sutAction = () => spec.Evaluate(StoreSeed.Get());
+
+            // assert
+            sutAction.Should()
+                .Throw<DuplicateOrderChainException>()
+                .WithMessage("The specification contains more than one Order chain!");
         }
     }
 }
