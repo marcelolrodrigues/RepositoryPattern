@@ -7,7 +7,7 @@ namespace SpecificationPatternRepository.Core
     public class BaseSpecification<T> : IBaseSpecification<T>
     {
         public List<WhereClause<T>> WhereClauses { get; set; }
-        public List<OrderExpression<T>> OrderByExpressions { get; set; }
+        public List<OrderByClause<T>> OrderByClauses { get; set; }
         public List<IncludeExpression> IncludeExpressions { get; set; }
         public int? Skip { get; set; }
         public int? Take { get; set; }
@@ -18,7 +18,7 @@ namespace SpecificationPatternRepository.Core
         public BaseSpecification()
         {
             WhereClauses = new List<WhereClause<T>>();
-            OrderByExpressions = new List<OrderExpression<T>>();
+            OrderByClauses = new List<OrderByClause<T>>();
             IncludeExpressions = new List<IncludeExpression>();
             SpecificationBuilder = new SpecificationBuilder<T>(this);
             InMemorySpecificationEvaluator = new InMemorySpecificationEvaluator();

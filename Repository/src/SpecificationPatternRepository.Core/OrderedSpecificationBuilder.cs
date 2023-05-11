@@ -15,16 +15,16 @@ namespace SpecificationPatternRepository.Core
 
         public OrderedSpecificationBuilder<T> ThenBy(Expression<Func<T, object>> orderExpression)
         {
-            BaseSpecification.OrderByExpressions.Add(
-                new OrderExpression<T>(orderExpression, OrderByType.ThenBy)
+            BaseSpecification.OrderByClauses.Add(
+                new OrderByClause<T>(orderExpression, OrderByType.ThenBy)
             );
             return this;
         }
 
         public OrderedSpecificationBuilder<T> ThenByDescending(Expression<Func<T, object>> orderExpression)
         {
-            BaseSpecification.OrderByExpressions.Add(
-                new OrderExpression<T>(orderExpression, OrderByType.ThenByDescending)
+            BaseSpecification.OrderByClauses.Add(
+                new OrderByClause<T>(orderExpression, OrderByType.ThenByDescending)
             );
             return this;
         }

@@ -10,10 +10,10 @@ namespace SpecificationPatternRepository.Core.Evaluator
 
         public IQueryable<T> GetQuery<T>(IQueryable<T> query, IBaseSpecification<T> specification)
         {
-            if (specification.OrderByExpressions.Count == 0)
+            if (specification.OrderByClauses.Count == 0)
                 return query;
 
-            if(specification.OrderByExpressions.Count(
+            if(specification.OrderByClauses.Count(
                 spec => spec.OrderType == OrderByType.OrderBy 
                 || spec.OrderType == OrderByType.OrderByDescending
             ) > 1)
@@ -22,16 +22,16 @@ namespace SpecificationPatternRepository.Core.Evaluator
             }
 
             IOrderedQueryable<T>? orderedQuery = null;
-            foreach (OrderExpression<T> orderExpression in specification.OrderByExpressions)
+            foreach (OrderByClause<T> orderExpression in specification.OrderByClauses)
             {
                 if (orderExpression.OrderType == OrderByType.OrderBy)
-                    orderedQuery = query.OrderBy(orderExpression.OrderByExpression);
+                    orderedQuery = query.OrderBy(orderExpression.Expression);
                 else if (orderExpression.OrderType == OrderByType.OrderByDescending)
-                    orderedQuery = query.OrderByDescending(orderExpression.OrderByExpression);
+                    orderedQuery = query.OrderByDescending(orderExpression.Expression);
                 else if (orderExpression.OrderType == OrderByType.ThenBy)
-                    orderedQuery = orderedQuery.ThenBy(orderExpression.OrderByExpression);
+                    orderedQuery = orderedQuery.ThenBy(orderExpression.Expression);
                 else
-                    orderedQuery = orderedQuery.ThenByDescending(orderExpression.OrderByExpression);
+                    orderedQuery = orderedQuery.ThenByDescending(orderExpression.Expression);
             }
 
             return orderedQuery;
@@ -39,10 +39,10 @@ namespace SpecificationPatternRepository.Core.Evaluator
 
         public IEnumerable<T> Evaluate<T>(IEnumerable<T> set, IBaseSpecification<T> specification)
         {
-            if (specification.OrderByExpressions.Count == 0)
+            if (specification.OrderByClauses.Count == 0)
                 return set;
 
-            if(specification.OrderByExpressions.Count(
+            if(specification.OrderByClauses.Count(
                 spec => spec.OrderType == OrderByType.OrderBy 
                 || spec.OrderType == OrderByType.OrderByDescending
             ) > 1)
@@ -51,7 +51,7 @@ namespace SpecificationPatternRepository.Core.Evaluator
             }
 
             IOrderedEnumerable<T>? orderedSet = null;
-            foreach (OrderExpression<T> orderExpression in specification.OrderByExpressions)
+            foreach (OrderByClause<T> orderExpression in specification.OrderByClauses)
             {
                 if (orderExpression.OrderType == OrderByType.OrderBy)
                     orderedSet = set.OrderBy(orderExpression.KeySelectorFunc);

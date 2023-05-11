@@ -2,19 +2,19 @@
 
 namespace SpecificationPatternRepository.Core.Expressions
 {
-    public class OrderExpression<T>
+    public class OrderByClause<T>
     {
-        public Expression<Func<T, object>> OrderByExpression { get; set; }
+        public Expression<Func<T, object>> Expression { get; set; }
         public OrderByType OrderType { get; set; }
 
         public Func<T, object?> KeySelectorFunc => this.keySelectorFunc.Value;
         private readonly Lazy<Func<T, object?>> keySelectorFunc;
 
-        public OrderExpression(Expression<Func<T, object?>> keySelector, OrderByType orderType)
+        public OrderByClause(Expression<Func<T, object?>> expression, OrderByType type)
         {
-            OrderByExpression = keySelector;
-            OrderType = orderType;
-            keySelectorFunc = new Lazy<Func<T, object?>>(this.OrderByExpression.Compile());
+            Expression = expression;
+            OrderType = type;
+            keySelectorFunc = new Lazy<Func<T, object?>>(this.Expression.Compile());
         }
     }
 
