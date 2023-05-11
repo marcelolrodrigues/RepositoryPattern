@@ -4,7 +4,7 @@ using SpecificationPatternRepository.Core.UnitTests.Fixture.Entities;
 using SpecificationPatternRepository.Core.UnitTests.Fixture.Entities.Seeds;
 using SpecificationPatternRepository.Core.UnitTests.Fixture.Specs;
 
-namespace SpecificationPatternRepository.Core.UnitTests
+namespace SpecificationPatternRepository.Core.UnitTests.EvaluatorsTests
 {
     public class InMemorySpecificationEvaluatorTests
     {
@@ -134,7 +134,7 @@ namespace SpecificationPatternRepository.Core.UnitTests
             int pageSize = 10;
             int skip = pageSize * (pageNumber - 1);
             int take = pageSize;
-            StoresByCompanyPaginatedSpec specification = 
+            StoresByCompanyPaginatedSpec specification =
                 new StoresByCompanyPaginatedSpec(2, skip, take);
 
             // act
