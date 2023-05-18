@@ -56,7 +56,7 @@ namespace SpecificationPatternRepository.Core
         public ISpecificationBuilder<T> Take(int take)
         {
             if (BaseSpecification.Take != null)
-                throw new Exception("Duplicated Take");
+                throw new DuplicatedTakeException();
             this.BaseSpecification.Take = take;
             return this;
         }
