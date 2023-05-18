@@ -1,4 +1,5 @@
-﻿using SpecificationPatternRepository.Core.Expressions;
+﻿using SpecificationPatternRepository.Core.Exceptions;
+using SpecificationPatternRepository.Core.Expressions;
 using SpecificationPatternRepository.Core.Interfaces;
 using System.Linq.Expressions;
 
@@ -46,7 +47,8 @@ namespace SpecificationPatternRepository.Core
         public ISpecificationBuilder<T> Skip(int skip)
         {
             if (BaseSpecification.Skip != null)
-                throw new Exception("Duplicated Skip");
+                throw new DuplicateSkipException();
+            
             this.BaseSpecification.Skip = skip;
             return this;
         }
