@@ -5,28 +5,28 @@ using SpecificationPatternRepository.Core.Interfaces;
 namespace SpecificationPatternRepository.Core
 {
     public class BaseSpecification<T> : IBaseSpecification<T>
-    {
+    {       
         public List<WhereClause<T>> WhereClauses { get; set; }
         public List<OrderByClause<T>> OrderByClauses { get; set; }
-        public List<IncludeExpression> IncludeExpressions { get; set; }
+        public List<IncludeClause> IncludeClauses { get; set; }
         public int? Skip { get; set; }
         public int? Take { get; set; }
-
+        
         public ISpecificationBuilder<T> SpecificationBuilder { get; }
-        private InMemorySpecificationEvaluator InMemorySpecificationEvaluator { get; set; }
+        private InMemorySpecificationEvaluator _inMemorySpecificationEvaluator { get; set; }
 
         public BaseSpecification()
         {
             WhereClauses = new List<WhereClause<T>>();
             OrderByClauses = new List<OrderByClause<T>>();
-            IncludeExpressions = new List<IncludeExpression>();
+            IncludeClauses = new List<IncludeClause>();
             SpecificationBuilder = new SpecificationBuilder<T>(this);
-            InMemorySpecificationEvaluator = new InMemorySpecificationEvaluator();
+            _inMemorySpecificationEvaluator = InMemorySpecificationEvaluator.Instance;
         }
 
-        public IEnumerable<T> Evaluate(IEnumerable<T> set)
+        public IEnumerable<T> EvaluateInMemory(IEnumerable<T> set)
         {
-            IEnumerable<T> result = InMemorySpecificationEvaluator.Evaluate(set, this);
+            IEnumerable<T> result = _inMemorySpecificationEvaluator.Evaluate(set, this);
             return result;
         }
     }
@@ -36,19 +36,18 @@ namespace SpecificationPatternRepository.Core
         public List<SelectorClause<T, TResult>> SelectorClauses { get; set; }
 
         public new SpecificationBuilder<T, TResult> SpecificationBuilder { get; }
-        private InMemorySpecificationEvaluator InMemorySpecificationEvaluator { get; set; }
-
+        private InMemorySpecificationEvaluator _inMemorySpecificationEvaluator { get; set; }
 
         public BaseSpecification()
         {
             SelectorClauses = new List<SelectorClause<T, TResult>>();
             SpecificationBuilder = new SpecificationBuilder<T, TResult>(this);
-            InMemorySpecificationEvaluator = new InMemorySpecificationEvaluator();
+            _inMemorySpecificationEvaluator = InMemorySpecificationEvaluator.Instance;
         }
 
-        public new IEnumerable<TResult> Evaluate(IEnumerable<T> set)
+        public new IEnumerable<TResult> EvaluateInMemory(IEnumerable<T> set)
         {
-            IEnumerable<TResult> result = InMemorySpecificationEvaluator.Evaluate(set, this);
+            IEnumerable<TResult> result = _inMemorySpecificationEvaluator.Evaluate(set, this);
             return result;
         }
     }

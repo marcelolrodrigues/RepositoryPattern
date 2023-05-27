@@ -2,9 +2,9 @@
 
 namespace SpecificationPatternRepository.Core.Expressions
 {
-    public class IncludeExpression
+    public class IncludeClause
     {
-        public LambdaExpression LambdaExpression { get; set; }
+        public LambdaExpression Expression { get; set; }
         public Type EntityType { get; set; }
         public Type PropertyType { get; set; }
     }

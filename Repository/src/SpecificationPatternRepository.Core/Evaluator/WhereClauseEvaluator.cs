@@ -10,7 +10,7 @@ namespace SpecificationPatternRepository.Core.Evaluator
         public IQueryable<T> GetQuery<T>(IQueryable<T> query, IBaseSpecification<T> specification)
         {
             foreach (WhereClause<T> clause in specification.WhereClauses)
-                query = query.Where(clause.WhereExpression);
+                query = query.Where(clause.Expression);
             return query;
         }
 

@@ -38,11 +38,6 @@ namespace SpecificationPatternRepository.Core
             return ordSpec;
         }
 
-        public ISpecificationBuilder<T> Include(IncludeExpression includeExpressions)
-        {
-            BaseSpecification.IncludeExpressions.Add(includeExpressions);
-            return this;
-        }
 
         public ISpecificationBuilder<T> Skip(int skip)
         {
@@ -58,6 +53,12 @@ namespace SpecificationPatternRepository.Core
             if (BaseSpecification.Take != null)
                 throw new DuplicatedTakeException();
             this.BaseSpecification.Take = take;
+            return this;
+        }
+
+        public ISpecificationBuilder<T> Include(IncludeClause includeExpressions)
+        {
+            BaseSpecification.IncludeClauses.Add(includeExpressions);
             return this;
         }
     }

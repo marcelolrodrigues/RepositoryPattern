@@ -7,21 +7,21 @@ namespace SpecificationPatternRepository.Infrastructure
     public class SpecificationEvaluator<T>
     {
         public static SpecificationEvaluator<T> Instance { get; } = new SpecificationEvaluator<T>();
-        private readonly List<IEvaluator> Evaluators;
+        private readonly List<IEvaluator> _evaluators;
 
         public SpecificationEvaluator()
         {
-            Evaluators = new List<IEvaluator>()
+            _evaluators = new List<IEvaluator>()
             {
                 WhereClauseEvaluator.Instance,
-                OrderByEvaluator.Instance,
+                OrderByClauseEvaluator.Instance,
                 IncludeEvaluator.Instance,
             };
         }
 
         public IQueryable<T> GetQuery(IQueryable<T> query, IBaseSpecification<T> specification)
         {
-            foreach (IEvaluator evaluator in Evaluators)
+            foreach (IEvaluator evaluator in _evaluators)
                 query = evaluator.GetQuery(query, specification);
             return query;
         }

@@ -16,7 +16,7 @@ namespace SpecificationPatternRepository.Core.UnitTests.EvaluatorsTests
             List<Store> stores = StoreSeed.Get();
 
             // act
-            Store? store = spec.Evaluate(stores).FirstOrDefault();
+            Store? store = spec.EvaluateInMemory(stores).FirstOrDefault();
 
             // assert
             store?.Id.Should().Be(10);
@@ -30,7 +30,7 @@ namespace SpecificationPatternRepository.Core.UnitTests.EvaluatorsTests
             StoreByIdListSpec spec = new StoreByIdListSpec(ids);
 
             // act
-            IEnumerable<Store> stores = spec.Evaluate(StoreSeed.Get());
+            IEnumerable<Store> stores = spec.EvaluateInMemory(StoreSeed.Get());
 
             // assert
             stores.Count().Should().Be(16);
@@ -50,7 +50,7 @@ namespace SpecificationPatternRepository.Core.UnitTests.EvaluatorsTests
             IEnumerable<Store> repo = StoreSeed.Get();
 
             // act
-            IEnumerable<string> result = spec.Evaluate(repo);
+            IEnumerable<string> result = spec.EvaluateInMemory(repo);
 
             // assert
             result.Count().Should().Be(take);
@@ -69,7 +69,7 @@ namespace SpecificationPatternRepository.Core.UnitTests.EvaluatorsTests
             StoresPaginatedSpec spec = new StoresPaginatedSpec(skip, take);
 
             // act
-            IEnumerable<Store> stores = spec.Evaluate(StoreSeed.Get());
+            IEnumerable<Store> stores = spec.EvaluateInMemory(StoreSeed.Get());
 
             // assert
             stores.Count().Should().Be(take);
@@ -84,7 +84,7 @@ namespace SpecificationPatternRepository.Core.UnitTests.EvaluatorsTests
             StoresByCompanyOrderedDescByNameSpec spec = new StoresByCompanyOrderedDescByNameSpec(2);
 
             // act
-            IEnumerable<Store> stores = spec.Evaluate(StoreSeed.Get());
+            IEnumerable<Store> stores = spec.EvaluateInMemory(StoreSeed.Get());
 
             // assert
             stores.First().Id.Should().Be(StoreSeed.ORDERED_BY_NAME_DESC_FOR_COMPANY2_FIRST_ID);
@@ -99,7 +99,7 @@ namespace SpecificationPatternRepository.Core.UnitTests.EvaluatorsTests
                 new StoresByCompanyOrderedDescByNameThenByIdSpec(2);
 
             // act
-            IEnumerable<Store> stores = specification.Evaluate(StoreSeed.Get());
+            IEnumerable<Store> stores = specification.EvaluateInMemory(StoreSeed.Get());
 
             // assert
             stores.First().Id.Should().Be(99);
@@ -118,7 +118,7 @@ namespace SpecificationPatternRepository.Core.UnitTests.EvaluatorsTests
                 new StoresByCompanyPaginatedOrderedDescByNameSpec(2, skip, take);
 
             // act
-            IEnumerable<Store> stores = specification.Evaluate(StoreSeed.Get());
+            IEnumerable<Store> stores = specification.EvaluateInMemory(StoreSeed.Get());
 
             // assert
             stores.Count().Should().Be(take);
@@ -138,7 +138,7 @@ namespace SpecificationPatternRepository.Core.UnitTests.EvaluatorsTests
                 new StoresByCompanyPaginatedSpec(2, skip, take);
 
             // act
-            IEnumerable<Store> stores = specification.Evaluate(StoreSeed.Get());
+            IEnumerable<Store> stores = specification.EvaluateInMemory(StoreSeed.Get());
 
             // assert
             stores.Count().Should().Be(take);
@@ -154,7 +154,7 @@ namespace SpecificationPatternRepository.Core.UnitTests.EvaluatorsTests
                 new StoresOrderedSpecByName();
 
             // act
-            IEnumerable<Store> stores = specification.Evaluate(StoreSeed.Get());
+            IEnumerable<Store> stores = specification.EvaluateInMemory(StoreSeed.Get());
 
             // assert
             stores.First().Id.Should().Be(StoreSeed.ORDERED_BY_NAME_FIRST_ID);
@@ -169,7 +169,7 @@ namespace SpecificationPatternRepository.Core.UnitTests.EvaluatorsTests
                 new StoresOrderedDescendingByNameSpec();
 
             // act
-            IEnumerable<Store> stores = specification.Evaluate(StoreSeed.Get());
+            IEnumerable<Store> stores = specification.EvaluateInMemory(StoreSeed.Get());
 
             // assert
             stores.First().Id.Should().Be(StoreSeed.ORDERED_BY_NAME_DESC_FIRST_ID);
@@ -183,7 +183,7 @@ namespace SpecificationPatternRepository.Core.UnitTests.EvaluatorsTests
             StoresOrderedTwoChainsSpec spec = new StoresOrderedTwoChainsSpec();
 
             // act
-            Action sutAction = () => spec.Evaluate(StoreSeed.Get());
+            Action sutAction = () => spec.EvaluateInMemory(StoreSeed.Get());
 
             // assert
             sutAction.Should()

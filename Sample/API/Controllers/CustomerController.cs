@@ -47,9 +47,9 @@ namespace API.Controllers
             spec.SpecificationBuilder
                 .Where(x => x.Name == "marcelo")
                 .Include(
-                    new IncludeExpression()
+                    new IncludeClause()
                     {
-                        LambdaExpression = asd,
+                        Expression = asd,
                         EntityType = typeof(Customer),
                         PropertyType = typeof(IEnumerable<Store>)
                     }

@@ -4,9 +4,9 @@ using SpecificationPatternRepository.Core.Interfaces;
 
 namespace SpecificationPatternRepository.Core.Evaluator
 {
-    public class OrderByEvaluator : IEvaluator, IInMemoryEvaluator
+    public class OrderByClauseEvaluator : IEvaluator, IInMemoryEvaluator
     {
-        public static OrderByEvaluator Instance { get; } = new OrderByEvaluator();
+        public static OrderByClauseEvaluator Instance { get; } = new OrderByClauseEvaluator();
 
         public IQueryable<T> GetQuery<T>(IQueryable<T> query, IBaseSpecification<T> specification)
         {

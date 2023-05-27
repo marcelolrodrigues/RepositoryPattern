@@ -20,12 +20,12 @@ namespace SpecificationPatternRepository.Infrastructure.Evaluators
                     && mi.GetParameters()[1].ParameterType.GetGenericTypeDefinition() == typeof(Expression<>)
                 );
 
-            foreach (IncludeExpression includeExpression in specification.IncludeExpressions)
+            foreach (IncludeClause includeClause in specification.IncludeClauses)
             {
                 var result = IncludeMethodInfo.MakeGenericMethod(
-                    includeExpression.EntityType,
-                    includeExpression.PropertyType
-                ).Invoke(null, new object[] { query, includeExpression.LambdaExpression });
+                    includeClause.EntityType,
+                    includeClause.PropertyType
+                ).Invoke(null, new object[] { query, includeClause.Expression });
 
                 query = (IQueryable<T>)result;
             }
