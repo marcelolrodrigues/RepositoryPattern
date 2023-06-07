@@ -4,7 +4,7 @@ using SpecificationPatternRepository.Core.UnitTests.Fixture.Specs;
 
 namespace SpecificationPatternRepository.Core.UnitTests.SpecificationBuilderTests
 {
-    public class OrderBy
+    public class SpecificationBuilder_OrderByDesc
     {
         [Fact]
         public void AddsNothingToList_GivenNoOrderExpression()
@@ -19,20 +19,20 @@ namespace SpecificationPatternRepository.Core.UnitTests.SpecificationBuilderTest
         //[Fact]
         //public void AddsNothingToList_GivenOrderExpressionWithFalseCondition()
         //{
-        //    CompanyByIdWithFalseConditions spec = new CompanyByIdWithFalseConditions(1);
+        //    var spec = new CompanyByIdWithFalseConditions(1);
 
         //    spec.OrderExpressions.Should().BeEmpty();
         //}
 
         [Fact]
-        public void AddsOrderExpressionToListWithOrderByType_GivenOrderByExpression()
+        public void AddsOrderExpressionToListWithOrderByDescendingType_GivenOrderByDescendingExpression()
         {
             // arrange
-            StoresOrderedSpecByName spec = new StoresOrderedSpecByName();
+            StoresOrderedDescendingByNameSpec spec = new StoresOrderedDescendingByNameSpec();
 
             // assert
             spec.OrderByClauses.Should().ContainSingle();
-            spec.OrderByClauses.Single().OrderType.Should().Be(OrderByType.OrderBy);
+            spec.OrderByClauses.Single().OrderType.Should().Be(OrderByType.OrderByDescending);
         }
     }
 }

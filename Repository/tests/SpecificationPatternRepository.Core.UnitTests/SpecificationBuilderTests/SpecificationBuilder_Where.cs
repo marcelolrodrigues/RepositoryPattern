@@ -3,7 +3,7 @@ using SpecificationPatternRepository.Core.UnitTests.Fixture.Specs;
 
 namespace SpecificationPatternRepository.Core.UnitTests.SpecificationBuilderTests
 {
-    public class Where
+    public class SpecificationBuilder_Where
     {
         [Fact]
         public void AddsNothingToList_GivenNoWhereExpression()

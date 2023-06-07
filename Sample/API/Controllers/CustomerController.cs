@@ -3,7 +3,7 @@ using API.Services;
 using Core.Entities;
 using Microsoft.AspNetCore.Mvc;
 using SpecificationPatternRepository.Core;
-using SpecificationPatternRepository.Core.Expressions;
+using SpecificationPatternRepository.Core.Clauses;
 using System.Linq.Expressions;
 
 namespace API.Controllers

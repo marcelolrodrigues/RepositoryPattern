@@ -4,7 +4,7 @@ using SpecificationPatternRepository.Core.UnitTests.Fixture.Specs;
 
 namespace SpecificationPatternRepository.Core.UnitTests.SpecificationBuilderTests
 {
-    public class OrderByThenBy
+    public class SpecificationBuilder_OrderByThenBy
     {
         [Fact]
         public void AppendOrderExpressionToListWithThenByType_GivenThenByExpression()

@@ -4,7 +4,7 @@ using SpecificationPatternRepository.Core.UnitTests.Fixture.Specs;
 
 namespace SpecificationPatternRepository.Core.UnitTests.SpecificationBuilderTests
 {
-    public class Take
+    public class SpecificationBuilder_Take
     {
         [Fact]
         public void SetsTakeProperty_GivenValue()

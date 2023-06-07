@@ -4,7 +4,7 @@ using SpecificationPatternRepository.Core.UnitTests.Fixture.Specs;
 
 namespace SpecificationPatternRepository.Core.UnitTests.SpecificationBuilderTests
 {
-    public class Skip
+    public class SpecificationBuilder_Skip
     {
         [Fact]
         public void SetsSkipProperty_GivenValue()

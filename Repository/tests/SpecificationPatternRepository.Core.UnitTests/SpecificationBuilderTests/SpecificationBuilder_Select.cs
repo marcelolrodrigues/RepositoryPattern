@@ -3,7 +3,7 @@ using SpecificationPatternRepository.Core.UnitTests.Fixture.Specs;
 
 namespace SpecificationPatternRepository.Core.UnitTests.SpecificationBuilderTests
 {
-    public class SelectorTests
+    public class SpecificationBuilder_Select
     {
         [Fact]
         public void SetsNothing_GivenNoSelectExpression()

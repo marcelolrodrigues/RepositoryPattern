@@ -4,7 +4,7 @@ using SpecificationPatternRepository.Core.UnitTests.Fixture.Specs;
 
 namespace SpecificationPatternRepository.Core.UnitTests.SpecificationBuilderTests
 {
-    public class OrderByDescThenByDesc
+    public class SpecificationBuilder_OrderByDescThenByDesc
     {
         [Fact]
         public void AppendsOrderExpressionToListWithThenByDescendingType_GivenThenByDescendingExpression()
