@@ -1,4 +1,4 @@
-﻿using SpecificationPatternRepository.Core.Expressions;
+﻿using SpecificationPatternRepository.Core.Clauses;
 
 namespace SpecificationPatternRepository.Core.Interfaces
 {

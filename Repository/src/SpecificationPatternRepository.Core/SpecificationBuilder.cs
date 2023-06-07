@@ -1,5 +1,5 @@
-﻿using SpecificationPatternRepository.Core.Exceptions;
-using SpecificationPatternRepository.Core.Expressions;
+﻿using SpecificationPatternRepository.Core.Clauses;
+using SpecificationPatternRepository.Core.Exceptions;
 using SpecificationPatternRepository.Core.Interfaces;
 using System.Linq.Expressions;
 

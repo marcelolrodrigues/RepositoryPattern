@@ -1,6 +1,6 @@
 ﻿using System.Linq.Expressions;
 
-namespace SpecificationPatternRepository.Core.Expressions
+namespace SpecificationPatternRepository.Core.Clauses
 {
     public class SelectorClause<T, TResult>
     {
