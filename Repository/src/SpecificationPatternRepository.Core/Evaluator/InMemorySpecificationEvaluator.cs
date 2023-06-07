@@ -29,7 +29,7 @@ namespace SpecificationPatternRepository.Core.Evaluator
             foreach (IInMemoryEvaluator eval in _inMemoryEvaluators)
                 set = eval.Evaluate(set, specification);
 
-            IEnumerable<TResult> result = set.Select(specification.SelectorClauses.First().Expression.Compile());
+            IEnumerable<TResult> result = set.Select(specification.SelectorClause.Expression.Compile());
 
             return result;
         }

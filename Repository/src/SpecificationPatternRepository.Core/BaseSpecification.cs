@@ -33,14 +33,13 @@ namespace SpecificationPatternRepository.Core
 
     public class BaseSpecification<T, TResult> : BaseSpecification<T>, IBaseSpecification<T, TResult>
     {
-        public List<SelectorClause<T, TResult>> SelectorClauses { get; set; }
+        public SelectorClause<T, TResult> SelectorClause { get; set; }
 
         public new SpecificationBuilder<T, TResult> SpecificationBuilder { get; }
         private InMemorySpecificationEvaluator _inMemorySpecificationEvaluator { get; set; }
 
         public BaseSpecification()
         {
-            SelectorClauses = new List<SelectorClause<T, TResult>>();
             SpecificationBuilder = new SpecificationBuilder<T, TResult>(this);
             _inMemorySpecificationEvaluator = InMemorySpecificationEvaluator.Instance;
         }
