@@ -1,7 +1,7 @@
 ﻿namespace SpecificationPatternRepository.Core.Interfaces
 {
-    public interface IEvaluator
+    public interface IEvaluator<T>
     {
-        IQueryable<T> GetQuery<T>(IQueryable<T> query, IBaseSpecification<T> specification);
+        IQueryable<T> GetQuery(IQueryable<T> query, IBaseSpecification<T> specification);
     }
 }
