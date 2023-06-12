@@ -2,51 +2,38 @@
 
 namespace SpecificationPatternRepository.Core.Evaluator
 {
-    public class InMemorySpecificationEvaluator<T>
+    public class InMemorySpecificationEvaluator : IInMemorySpecificationEvaluator
     {
-        public static InMemorySpecificationEvaluator<T> Instance { get; } = new InMemorySpecificationEvaluator<T>();
-        private List<IInMemoryEvaluator<T>> _inMemoryEvaluatorsOfT { get; }
+        public static InMemorySpecificationEvaluator Instance { get; } = new InMemorySpecificationEvaluator();
+        private List<IInMemoryEvaluatorOfT> _inMemoryEvaluators { get; }
 
         public InMemorySpecificationEvaluator()
         {
-            _inMemoryEvaluatorsOfT = new List<IInMemoryEvaluator<T>>()
+            _inMemoryEvaluators = new List<IInMemoryEvaluatorOfT>()
             {
-                WhereClauseEvaluator<T>.Instance,
-                OrderByClauseEvaluator<T>.Instance,
-                PaginationEvaluator<T>.Instance
+                WhereClauseEvaluator.Instance,
+                OrderByClauseEvaluator.Instance,
+                PaginationEvaluator.Instance
             };
         }
 
         public IEnumerable<T> Evaluate<T>(IEnumerable<T> set, IBaseSpecification<T> specification)
         {
-            foreach (IInMemoryEvaluator<T> inMemoryEvaluators in _inMemoryEvaluatorsOfT)
-                set = inMemoryEvaluators.Evaluate(set, specification);
+            foreach (IInMemoryEvaluatorOfT inMemoryEvaluator in _inMemoryEvaluators)
+                set = inMemoryEvaluator.Evaluate(set, specification);
             return set;
         }
-    }
 
-    public class InMemorySpecificationEvaluator<T, TResult> : InMemorySpecificationEvaluator<T>
-    {
-        public static InMemorySpecificationEvaluator<T, TResult> Instance { get; } = new InMemorySpecificationEvaluator<T, TResult>();
-        private List<IInMemoryEvaluator<T, TResult>> _inMemoryEvaluatorsOfTAndTResult { get; }
-
-        public InMemorySpecificationEvaluator()
+        public IEnumerable<TResult> Evaluate<T, TResult>(IEnumerable<T> set, IBaseSpecification<T, TResult> specification)
         {
-            _inMemoryEvaluatorsOfTAndTResult = new List<IInMemoryEvaluator<T, TResult>>()
-            {
-                SelectClauseEvaluator<T, TResult>.Instance
-            };
-        }
+            IEnumerable<T> partialset = new List<T>();
+            foreach (IInMemoryEvaluatorOfT inMemoryEvaluator in _inMemoryEvaluators)
+                partialset = inMemoryEvaluator.Evaluate<T>(set, specification);
 
-        public IEnumerable<TResult> Evaluate(IEnumerable<T> set, IBaseSpecification<T, TResult> specification)
-        {
-            IEnumerable<TResult> resultSet;
-            foreach (IInMemoryEvaluator<T, TResult> eval in _inMemoryEvaluatorsOfTAndTResult)
-                resultSet = eval.Evaluate(set, specification);
+            IEnumerable<TResult> resultset = 
+                partialset.Select(specification.SelectorClause.Expression.Compile());
 
-            IEnumerable<TResult> result = set.Select(specification.SelectorClause.Expression.Compile());
-
-            return result;
+            return resultset;
         }
     }
 }

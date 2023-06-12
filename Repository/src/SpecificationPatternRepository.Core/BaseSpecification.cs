@@ -13,7 +13,7 @@ namespace SpecificationPatternRepository.Core
         public int? Take { get; set; }
         
         public ISpecificationBuilder<T> SpecificationBuilder { get; }
-        private InMemorySpecificationEvaluator<T> _inMemorySpecificationEvaluator { get; set; }
+        private IInMemorySpecificationEvaluator _inMemorySpecificationEvaluator { get; set; }
 
         public BaseSpecification()
         {
@@ -21,7 +21,7 @@ namespace SpecificationPatternRepository.Core
             OrderByClauses = new List<OrderByClause<T>>();
             IncludeClauses = new List<IncludeClause>();
             SpecificationBuilder = new SpecificationBuilder<T>(this);
-            _inMemorySpecificationEvaluator = InMemorySpecificationEvaluator<T>.Instance;
+            _inMemorySpecificationEvaluator = InMemorySpecificationEvaluator.Instance;
         }
 
         public IEnumerable<T> EvaluateInMemory(IEnumerable<T> set)
@@ -36,12 +36,12 @@ namespace SpecificationPatternRepository.Core
         public SelectorClause<T, TResult> SelectorClause { get; set; }
 
         public new SpecificationBuilder<T, TResult> SpecificationBuilder { get; }
-        private InMemorySpecificationEvaluator<T, TResult> _inMemorySpecificationEvaluator { get; set; }
+        private IInMemorySpecificationEvaluator _inMemorySpecificationEvaluator { get; set; }
 
         public BaseSpecification()
         {
             SpecificationBuilder = new SpecificationBuilder<T, TResult>(this);
-            _inMemorySpecificationEvaluator = InMemorySpecificationEvaluator<T, TResult>.Instance;
+            _inMemorySpecificationEvaluator = InMemorySpecificationEvaluator.Instance;
         }
 
         public new IEnumerable<TResult> EvaluateInMemory(IEnumerable<T> set)

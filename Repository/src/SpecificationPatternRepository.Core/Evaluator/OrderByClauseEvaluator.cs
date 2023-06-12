@@ -4,11 +4,11 @@ using SpecificationPatternRepository.Core.Interfaces;
 
 namespace SpecificationPatternRepository.Core.Evaluator
 {
-    public class OrderByClauseEvaluator<T> : IEvaluator<T>, IInMemoryEvaluator<T>
+    public class OrderByClauseEvaluator : IEvaluator, IInMemoryEvaluatorOfT
     {
-        public static OrderByClauseEvaluator<T> Instance { get; } = new OrderByClauseEvaluator<T>();
+        public static OrderByClauseEvaluator Instance { get; } = new OrderByClauseEvaluator();
 
-        public IQueryable<T> GetQuery(IQueryable<T> query, IBaseSpecification<T> specification)
+        public IQueryable<T> GetQuery<T>(IQueryable<T> query, IBaseSpecification<T> specification)
         {
             if (specification.OrderByClauses.Count == 0)
                 return query;
@@ -37,7 +37,7 @@ namespace SpecificationPatternRepository.Core.Evaluator
             return orderedQuery;
         }
 
-        public IEnumerable<T> Evaluate(IEnumerable<T> set, IBaseSpecification<T> specification)
+        public IEnumerable<T> Evaluate<T>(IEnumerable<T> set, IBaseSpecification<T> specification)
         {
             if (specification.OrderByClauses.Count == 0)
                 return set;

@@ -2,17 +2,17 @@
 
 namespace SpecificationPatternRepository.Core.Evaluator
 {
-    public class SelectClauseEvaluator<T, TResult> : IInMemoryEvaluator<T, TResult>
+    public class SelectClauseEvaluator : IInMemoryEvaluatorOfTAndTResult
     {
-        public static SelectClauseEvaluator<T, TResult> Instance { get; } = new SelectClauseEvaluator<T, TResult>();
+        public static SelectClauseEvaluator Instance { get; } = new SelectClauseEvaluator();
 
-        public IEnumerable<TResult> Evaluate(IEnumerable<T> set, IBaseSpecification<T, TResult> specification)
+        public IEnumerable<TResult> Evaluate<T, TResult>(IEnumerable<T> set, IBaseSpecification<T, TResult> specification)
         {
             IEnumerable<TResult> outputQuery = set.Select(specification.SelectorClause.Expression.Compile());
             return outputQuery;
         }
 
-        public IQueryable<TResult> GetQuery(IQueryable<T> query, IBaseSpecification<T, TResult> specification)
+        public IQueryable<TResult> GetQuery<T, TResult>(IQueryable<T> query, IBaseSpecification<T, TResult> specification)
         {
             IQueryable<TResult> outputQuery = query.Select(specification.SelectorClause.Expression);
             return outputQuery;

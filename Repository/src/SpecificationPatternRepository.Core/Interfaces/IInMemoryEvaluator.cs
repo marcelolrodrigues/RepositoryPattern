@@ -1,12 +1,12 @@
 ﻿namespace SpecificationPatternRepository.Core.Interfaces
 {
-    public interface IInMemoryEvaluator<T>
+    public interface IInMemoryEvaluatorOfT
     {
-        IEnumerable<T> Evaluate(IEnumerable<T> set, IBaseSpecification<T> specification);
+        IEnumerable<T> Evaluate<T>(IEnumerable<T> set, IBaseSpecification<T> specification);
     }
 
-    public interface IInMemoryEvaluator<T, TResult>
+    public interface IInMemoryEvaluatorOfTAndTResult
     {
-        IEnumerable<TResult> Evaluate(IEnumerable<T> set, IBaseSpecification<T, TResult> specification);
-    }
+        IEnumerable<TResult> Evaluate<T, TResult>(IEnumerable<T> set, IBaseSpecification<T, TResult> specification);
+    }    
 }

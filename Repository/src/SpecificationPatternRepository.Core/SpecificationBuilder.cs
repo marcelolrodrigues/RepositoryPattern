@@ -38,7 +38,6 @@ namespace SpecificationPatternRepository.Core
             return ordSpec;
         }
 
-
         public ISpecificationBuilder<T> Skip(int skip)
         {
             if (BaseSpecification.Skip != null)
