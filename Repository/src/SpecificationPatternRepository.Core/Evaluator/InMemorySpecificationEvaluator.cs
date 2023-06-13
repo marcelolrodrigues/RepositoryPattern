@@ -5,6 +5,7 @@ namespace SpecificationPatternRepository.Core.Evaluator
     public class InMemorySpecificationEvaluator : IInMemorySpecificationEvaluator
     {
         public static InMemorySpecificationEvaluator Instance { get; } = new InMemorySpecificationEvaluator();
+        
         private List<IInMemoryEvaluatorOfT> _inMemoryEvaluators { get; }
 
         public InMemorySpecificationEvaluator()
@@ -26,12 +27,12 @@ namespace SpecificationPatternRepository.Core.Evaluator
 
         public IEnumerable<TResult> Evaluate<T, TResult>(IEnumerable<T> set, IBaseSpecification<T, TResult> specification)
         {
-            IEnumerable<T> partialset = new List<T>();
             foreach (IInMemoryEvaluatorOfT inMemoryEvaluator in _inMemoryEvaluators)
-                partialset = inMemoryEvaluator.Evaluate<T>(set, specification);
+                set = inMemoryEvaluator.Evaluate<T>(set, specification);
 
-            IEnumerable<TResult> resultset = 
-                partialset.Select(specification.SelectorClause.Expression.Compile());
+            IEnumerable<TResult> resultset = new List<TResult>();
+            if (specification.SelectorClause != null)
+                resultset = set.Select(specification.SelectorClause.Func);
 
             return resultset;
         }
