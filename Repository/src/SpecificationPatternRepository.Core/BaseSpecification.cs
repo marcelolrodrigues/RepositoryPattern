@@ -36,13 +36,15 @@ namespace SpecificationPatternRepository.Core
 
     public class BaseSpecification<T, TResult> : BaseSpecification<T>, IBaseSpecification<T, TResult>
     {
-        public SelectorClause<T, TResult>? SelectorClause { get; internal set; }
+        public SelectorClause<T, TResult>? SelectClause { get; internal set; }
+        public SelectorClause<T, IEnumerable<TResult>>? SelectManyClause { get; internal set; }
 
         public new SpecificationBuilder<T, TResult> SpecificationBuilder { get; }
 
         public BaseSpecification()
         {
-            SelectorClause = null;
+            SelectClause = null;
+            SelectManyClause = null;
             SpecificationBuilder = new SpecificationBuilder<T, TResult>(this);
         }
 

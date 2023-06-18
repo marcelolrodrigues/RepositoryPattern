@@ -77,7 +77,14 @@ namespace SpecificationPatternRepository.Core
         public ISpecificationBuilder<T, TResult> Select(Expression<Func<T, TResult>> expression)
         {
             SelectorClause<T, TResult> selector = new SelectorClause<T, TResult>(expression);
-            BaseSpecification.SelectorClause = selector;
+            BaseSpecification.SelectClause = selector;
+            return this;
+        }
+
+        public ISpecificationBuilder<T, TResult> SelectMany(Expression<Func<T, IEnumerable<TResult>>> expression)
+        {
+            SelectorClause<T, IEnumerable<TResult>> selector = new SelectorClause<T, IEnumerable<TResult>>(expression);
+            BaseSpecification.SelectManyClause = selector;
             return this;
         }
     }

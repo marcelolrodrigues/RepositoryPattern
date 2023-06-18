@@ -13,6 +13,6 @@ namespace SpecificationPatternRepository.Core.Interfaces
 
     public interface IBaseSpecification<T, TResult> : IBaseSpecification<T>
     {
-        public SelectorClause<T, TResult>? SelectorClause { get; }
+        public SelectorClause<T, TResult>? SelectClause { get; }
     }
 }

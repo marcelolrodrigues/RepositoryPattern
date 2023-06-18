@@ -31,8 +31,8 @@ namespace SpecificationPatternRepository.Core.Evaluator
                 set = inMemoryEvaluator.Evaluate<T>(set, specification);
 
             IEnumerable<TResult> resultset = new List<TResult>();
-            if (specification.SelectorClause != null)
-                resultset = set.Select(specification.SelectorClause.Func);
+            if (specification.SelectClause != null)
+                resultset = set.Select(specification.SelectClause.Func);
 
             return resultset;
         }
