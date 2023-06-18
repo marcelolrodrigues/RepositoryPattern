@@ -10,7 +10,7 @@ namespace SpecificationPatternRepository.Infrastructure.Evaluators
     {
         public static IncludeEvaluator Instance { get; } = new IncludeEvaluator();
 
-        public IQueryable<T> GetQuery<T>(IQueryable<T> query, IBaseSpecification<T> specification)
+        public IQueryable<T> GetQuery<T>(IQueryable<T> query, IBaseSpecification<T> specification) where T : class
         {
             var IncludeMethodInfo = typeof(EntityFrameworkQueryableExtensions)
                 .GetTypeInfo().GetDeclaredMethods(nameof(EntityFrameworkQueryableExtensions.Include))

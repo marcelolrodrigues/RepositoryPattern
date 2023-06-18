@@ -7,12 +7,12 @@ namespace SpecificationPatternRepository.Infrastructure
     public class SpecificationRepository<T> : BaseRepository<T>, ISpecificationRepository<T> where T : class
     {
         private readonly DbContext _context;
-        private readonly SpecificationEvaluator<T> _specificationEvaluator;
+        private readonly SpecificationEvaluator _specificationEvaluator;
 
         public SpecificationRepository(DbContext context) : base(context)
         {
             _context = context;
-            _specificationEvaluator = SpecificationEvaluator<T>.Instance;
+            _specificationEvaluator = SpecificationEvaluator.Instance;
         }
 
         public async Task<List<T>> ListWithSpecification(IBaseSpecification<T> specification)

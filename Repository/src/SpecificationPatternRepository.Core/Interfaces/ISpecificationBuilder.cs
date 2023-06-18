@@ -12,6 +12,7 @@ namespace SpecificationPatternRepository.Core.Interfaces
         public ISpecificationBuilder<T> Skip(int skip);
         public ISpecificationBuilder<T> Take(int take);
         public ISpecificationBuilder<T> Include<T, TProperty>(Expression<Func<T, TProperty>> expression);
+        public ISpecificationBuilder<T> AsNoTracking(bool asNoTracking);
     }
 
     public interface ISpecificationBuilder<T, TResult> : ISpecificationBuilder<T>

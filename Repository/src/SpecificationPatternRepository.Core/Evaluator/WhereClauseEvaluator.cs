@@ -7,7 +7,7 @@ namespace SpecificationPatternRepository.Core.Evaluator
     {
         public static WhereClauseEvaluator Instance { get; } = new WhereClauseEvaluator();
 
-        public IQueryable<T> GetQuery<T>(IQueryable<T> query, IBaseSpecification<T> specification)
+        public IQueryable<T> GetQuery<T>(IQueryable<T> query, IBaseSpecification<T> specification) where T : class
         {
             foreach (WhereClause<T> clause in specification.WhereClauses)
                 query = query.Where(clause.Expression);

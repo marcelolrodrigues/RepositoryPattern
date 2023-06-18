@@ -63,6 +63,12 @@ namespace SpecificationPatternRepository.Core
             BaseSpecification.IncludeClauses.Add(clause);
             return (ISpecificationBuilder<T>)this;
         }
+
+        public ISpecificationBuilder<T> AsNoTracking(bool asNoTracking)
+        {
+            BaseSpecification.AsNoTracking = asNoTracking;
+            return this;
+        }
     }
 
     public class SpecificationBuilder<T, TResult> : SpecificationBuilder<T>, ISpecificationBuilder<T, TResult>

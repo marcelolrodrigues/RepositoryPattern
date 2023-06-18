@@ -3,7 +3,6 @@ using API.Services;
 using Core.Entities;
 using Microsoft.AspNetCore.Mvc;
 using SpecificationPatternRepository.Core;
-using SpecificationPatternRepository.Core.Clauses;
 using System.Linq.Expressions;
 
 namespace API.Controllers
@@ -46,14 +45,15 @@ namespace API.Controllers
             Expression<Func<Customer, IEnumerable<Store>>> asd = x => x.Stores;
             spec.SpecificationBuilder
                 .Where(x => x.Name == "marcelo")
-                .Include(
-                    new IncludeClause()
-                    {
-                        Expression = asd,
-                        EntityType = typeof(Customer),
-                        PropertyType = typeof(IEnumerable<Store>)
-                    }
-                ).OrderBy(cust => cust.Name)
+                //.Include(
+                //    new IncludeClause(
+                //        asd, 
+                //        typeof(Customer), 
+                //        typeof(IEnumerable<Store>), 
+                //        IncludeTypeEnum.Include
+                //    )
+                //)
+                .OrderBy(cust => cust.Name)
                 .ThenByDescending(cust => cust.Address);
             List<Customer> outputCustomer = await _customerService.FindWithSpecification(spec);
             return Ok(outputCustomer);

@@ -11,6 +11,7 @@ namespace SpecificationPatternRepository.Core
         public int? Skip { get; internal set; }
         public int? Take { get; internal set; }
         public ICollection<IncludeClause> IncludeClauses { get; }
+        public bool AsNoTracking { get; internal set; }
 
         public ISpecificationBuilder<T> SpecificationBuilder { get; }
         
@@ -23,6 +24,7 @@ namespace SpecificationPatternRepository.Core
             Skip = null;
             Take = null;
             IncludeClauses = new List<IncludeClause>();
+            AsNoTracking = false;
             SpecificationBuilder = new SpecificationBuilder<T>(this);
             _inMemorySpecificationEvaluator = InMemorySpecificationEvaluator.Instance;
         }

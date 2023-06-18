@@ -9,7 +9,7 @@ namespace SpecificationPatternRepository.Core.Evaluator
     {
         public static OrderByClauseEvaluator Instance { get; } = new OrderByClauseEvaluator();
 
-        public IQueryable<T> GetQuery<T>(IQueryable<T> query, IBaseSpecification<T> specification)
+        public IQueryable<T> GetQuery<T>(IQueryable<T> query, IBaseSpecification<T> specification) where T : class
         {
             if (specification.OrderByClauses.Count == 0)
                 return query;

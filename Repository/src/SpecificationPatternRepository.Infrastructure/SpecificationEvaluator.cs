@@ -4,9 +4,9 @@ using SpecificationPatternRepository.Infrastructure.Evaluators;
 
 namespace SpecificationPatternRepository.Infrastructure
 {
-    public class SpecificationEvaluator<T>
+    public class SpecificationEvaluator 
     {
-        public static SpecificationEvaluator<T> Instance { get; } = new SpecificationEvaluator<T>();
+        public static SpecificationEvaluator Instance { get; } = new SpecificationEvaluator();
         private readonly List<IEvaluator> _evaluators;
 
         public SpecificationEvaluator()
@@ -19,7 +19,7 @@ namespace SpecificationPatternRepository.Infrastructure
             };
         }
 
-        public IQueryable<T> GetQuery(IQueryable<T> query, IBaseSpecification<T> specification)
+        public IQueryable<T> GetQuery<T>(IQueryable<T> query, IBaseSpecification<T> specification) where T : class
         {
             foreach (IEvaluator evaluator in _evaluators)
                 query = evaluator.GetQuery(query, specification);
