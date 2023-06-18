@@ -1,5 +1,5 @@
 ﻿using FluentAssertions;
-using SpecificationPatternRepository.Core.Clauses;
+using SpecificationPatternRepository.Core.Types;
 using SpecificationPatternRepository.Core.UnitTests.Fixture.Specs;
 
 namespace SpecificationPatternRepository.Core.UnitTests.SpecificationBuilderTests
