@@ -1,5 +1,4 @@
-﻿using SpecificationPatternRepository.Core.Clauses;
-using System.Linq.Expressions;
+﻿using System.Linq.Expressions;
 
 namespace SpecificationPatternRepository.Core.Interfaces
 {
@@ -8,11 +7,11 @@ namespace SpecificationPatternRepository.Core.Interfaces
         BaseSpecification<T> BaseSpecification { get; }
 
         public ISpecificationBuilder<T> Where(Expression<Func<T, bool>> expression);
-        public IOrderedSpecificationBuilder<T> OrderBy(Expression<Func<T, object>> orderExpressions);
-        public IOrderedSpecificationBuilder<T> OrderByDescending(Expression<Func<T, object>> orderExpressions);
-        public ISpecificationBuilder<T> Include(IncludeClause includeExpressions);
+        public IOrderedSpecificationBuilder<T> OrderBy(Expression<Func<T, object>> expression);
+        public IOrderedSpecificationBuilder<T> OrderByDescending(Expression<Func<T, object>> expression);
         public ISpecificationBuilder<T> Skip(int skip);
         public ISpecificationBuilder<T> Take(int take);
+        public ISpecificationBuilder<T> Include<T, TProperty>(Expression<Func<T, TProperty>> expression);
     }
 
     public interface ISpecificationBuilder<T, TResult> : ISpecificationBuilder<T>

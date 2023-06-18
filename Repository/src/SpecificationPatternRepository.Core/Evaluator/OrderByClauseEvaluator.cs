@@ -1,6 +1,7 @@
 ﻿using SpecificationPatternRepository.Core.Clauses;
 using SpecificationPatternRepository.Core.Exceptions;
 using SpecificationPatternRepository.Core.Interfaces;
+using SpecificationPatternRepository.Core.Types;
 
 namespace SpecificationPatternRepository.Core.Evaluator
 {

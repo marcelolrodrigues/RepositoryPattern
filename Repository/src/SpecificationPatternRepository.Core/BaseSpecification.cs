@@ -6,12 +6,12 @@ namespace SpecificationPatternRepository.Core
 {
     public class BaseSpecification<T> : IBaseSpecification<T>
     {       
-        public List<WhereClause<T>> WhereClauses { get; }
-        public List<OrderByClause<T>> OrderByClauses { get; }
-        public List<IncludeClause> IncludeClauses { get; }
+        public ICollection<WhereClause<T>> WhereClauses { get; }
+        public ICollection<OrderByClause<T>> OrderByClauses { get; }
         public int? Skip { get; internal set; }
         public int? Take { get; internal set; }
-        
+        public ICollection<IncludeClause> IncludeClauses { get; }
+
         public ISpecificationBuilder<T> SpecificationBuilder { get; }
         
         protected IInMemorySpecificationEvaluator _inMemorySpecificationEvaluator { get; }
@@ -20,9 +20,9 @@ namespace SpecificationPatternRepository.Core
         {
             WhereClauses = new List<WhereClause<T>>();
             OrderByClauses = new List<OrderByClause<T>>();
-            IncludeClauses = new List<IncludeClause>();
             Skip = null;
             Take = null;
+            IncludeClauses = new List<IncludeClause>();
             SpecificationBuilder = new SpecificationBuilder<T>(this);
             _inMemorySpecificationEvaluator = InMemorySpecificationEvaluator.Instance;
         }

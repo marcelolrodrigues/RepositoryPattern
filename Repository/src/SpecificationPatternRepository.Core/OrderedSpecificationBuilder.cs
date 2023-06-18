@@ -1,5 +1,6 @@
 ﻿using SpecificationPatternRepository.Core.Clauses;
 using SpecificationPatternRepository.Core.Interfaces;
+using SpecificationPatternRepository.Core.Types;
 using System.Linq.Expressions;
 
 namespace SpecificationPatternRepository.Core

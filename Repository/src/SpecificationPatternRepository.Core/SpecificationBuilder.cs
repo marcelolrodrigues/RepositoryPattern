@@ -1,6 +1,7 @@
 ﻿using SpecificationPatternRepository.Core.Clauses;
 using SpecificationPatternRepository.Core.Exceptions;
 using SpecificationPatternRepository.Core.Interfaces;
+using SpecificationPatternRepository.Core.Types;
 using System.Linq.Expressions;
 
 namespace SpecificationPatternRepository.Core
@@ -16,23 +17,24 @@ namespace SpecificationPatternRepository.Core
 
         public ISpecificationBuilder<T> Where(Expression<Func<T, bool>> expression)
         {
-            BaseSpecification.WhereClauses.Add(new WhereClause<T>(expression));
+            WhereClause<T> clause = new WhereClause<T>(expression);
+            BaseSpecification.WhereClauses.Add(clause);
             return this;
         }
 
-        public IOrderedSpecificationBuilder<T> OrderBy(Expression<Func<T, object>> orderExpressions)
+        public IOrderedSpecificationBuilder<T> OrderBy(Expression<Func<T, object>> expression)
         {
             BaseSpecification.OrderByClauses.Add(
-                new OrderByClause<T>(orderExpressions, OrderByType.OrderBy)
+                new OrderByClause<T>(expression, OrderByType.OrderBy)
             );
             OrderedSpecificationBuilder<T> ordSpec = new OrderedSpecificationBuilder<T>(BaseSpecification);
             return ordSpec;
         }
 
-        public IOrderedSpecificationBuilder<T> OrderByDescending(Expression<Func<T, object>> orderExpressions)
+        public IOrderedSpecificationBuilder<T> OrderByDescending(Expression<Func<T, object>> expression)
         {
             BaseSpecification.OrderByClauses.Add(
-                new OrderByClause<T>(orderExpressions, OrderByType.OrderByDescending)
+                new OrderByClause<T>(expression, OrderByType.OrderByDescending)
             );
             OrderedSpecificationBuilder<T> ordSpec = new OrderedSpecificationBuilder<T>(BaseSpecification);
             return ordSpec;
@@ -55,10 +57,11 @@ namespace SpecificationPatternRepository.Core
             return this;
         }
 
-        public ISpecificationBuilder<T> Include(IncludeClause includeExpressions)
+        public ISpecificationBuilder<T> Include<T, TProperty>(Expression<Func<T, TProperty>> expression)
         {
-            BaseSpecification.IncludeClauses.Add(includeExpressions);
-            return this;
+            IncludeClause clause = new IncludeClause(expression, typeof(T), typeof(TProperty), IncludeTypeEnum.Include);
+            BaseSpecification.IncludeClauses.Add(clause);
+            return (ISpecificationBuilder<T>)this;
         }
     }
 

@@ -1,4 +1,5 @@
-﻿using System.Linq.Expressions;
+﻿using SpecificationPatternRepository.Core.Types;
+using System.Linq.Expressions;
 
 namespace SpecificationPatternRepository.Core.Clauses
 {
@@ -7,22 +8,14 @@ namespace SpecificationPatternRepository.Core.Clauses
         public Expression<Func<T, object>> Expression { get; set; }
         public OrderByType OrderType { get; set; }
 
-        public Func<T, object?> KeySelectorFunc => keySelectorFunc.Value;
-        private readonly Lazy<Func<T, object?>> keySelectorFunc;
+        public Func<T, object> KeySelectorFunc => keySelectorFunc.Value;
+        private readonly Lazy<Func<T, object>> keySelectorFunc;
 
-        public OrderByClause(Expression<Func<T, object?>> expression, OrderByType type)
+        public OrderByClause(Expression<Func<T, object>> expression, OrderByType type)
         {
             Expression = expression;
             OrderType = type;
-            keySelectorFunc = new Lazy<Func<T, object?>>(Expression.Compile());
+            keySelectorFunc = new Lazy<Func<T, object>>(Expression.Compile());
         }
-    }
-
-    public enum OrderByType
-    {
-        OrderBy,
-        OrderByDescending,
-        ThenBy,
-        ThenByDescending
     }
 }

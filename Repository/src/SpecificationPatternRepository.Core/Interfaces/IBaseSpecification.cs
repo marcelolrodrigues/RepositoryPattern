@@ -4,11 +4,11 @@ namespace SpecificationPatternRepository.Core.Interfaces
 {
     public interface IBaseSpecification<T>
     {
-        public List<WhereClause<T>> WhereClauses { get; }
-        public List<OrderByClause<T>> OrderByClauses { get; }
-        public List<IncludeClause> IncludeClauses { get; }
+        public ICollection<WhereClause<T>> WhereClauses { get; }
+        public ICollection<OrderByClause<T>> OrderByClauses { get; }
         public int? Skip { get; }
         public int? Take { get; }
+        public ICollection<IncludeClause> IncludeClauses { get; }
     }
 
     public interface IBaseSpecification<T, TResult> : IBaseSpecification<T>
