@@ -2,7 +2,7 @@
 using SpecificationPatternRepository.Core.Types;
 using SpecificationPatternRepository.Core.UnitTests.Fixture.Specs;
 
-namespace SpecificationPatternRepository.Core.UnitTests.SpecificationBuilderTests
+namespace SpecificationPatternRepository.Core.UnitTests.BuilderTests
 {
     public class SpecificationBuilder_OrderByThenBy
     {
@@ -10,7 +10,7 @@ namespace SpecificationPatternRepository.Core.UnitTests.SpecificationBuilderTest
         public void AppendOrderExpressionToListWithThenByType_GivenThenByExpression()
         {
             // arrange
-            StoresByCompanyOrderedDescByNameThenByIdSpec spec = 
+            StoresByCompanyOrderedDescByNameThenByIdSpec spec =
                 new StoresByCompanyOrderedDescByNameThenByIdSpec(1);
 
             // assert

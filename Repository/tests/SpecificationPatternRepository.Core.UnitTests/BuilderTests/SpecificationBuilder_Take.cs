@@ -2,7 +2,7 @@
 using SpecificationPatternRepository.Core.Exceptions;
 using SpecificationPatternRepository.Core.UnitTests.Fixture.Specs;
 
-namespace SpecificationPatternRepository.Core.UnitTests.SpecificationBuilderTests
+namespace SpecificationPatternRepository.Core.UnitTests.BuilderTests
 {
     public class SpecificationBuilder_Take
     {

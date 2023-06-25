@@ -2,14 +2,14 @@
 using SpecificationPatternRepository.Core.Types;
 using SpecificationPatternRepository.Core.UnitTests.Fixture.Specs;
 
-namespace SpecificationPatternRepository.Core.UnitTests.SpecificationBuilderTests
+namespace SpecificationPatternRepository.Core.UnitTests.BuilderTests
 {
     public class SpecificationBuilder_OrderByDescThenByDesc
     {
         [Fact]
         public void AppendsOrderExpressionToListWithThenByDescendingType_GivenThenByDescendingExpression()
         {
-            StoresByCompanyOrderedDescByNameThenByDescIdSpec spec = 
+            StoresByCompanyOrderedDescByNameThenByDescIdSpec spec =
                 new StoresByCompanyOrderedDescByNameThenByDescIdSpec(1);
 
             spec.OrderByClauses.Should().HaveCount(2);
