@@ -1,4 +1,5 @@
 ﻿using SpecificationPatternRepository.Core.Interfaces;
+using System.Linq;
 
 namespace SpecificationPatternRepository.Core.Evaluator
 {
@@ -8,7 +9,7 @@ namespace SpecificationPatternRepository.Core.Evaluator
 
         public IEnumerable<TResult> Evaluate<T, TResult>(IEnumerable<T> set, IBaseSpecification<T, TResult> specification)
         {
-            IEnumerable<TResult> outputQuery = set.Select(specification.SelectClause.Expression.Compile());
+            IEnumerable<TResult> outputQuery = set.Select(specification.SelectClause.Func);
             return outputQuery;
         }
 
