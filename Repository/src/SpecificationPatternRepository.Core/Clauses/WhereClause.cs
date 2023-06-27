@@ -12,7 +12,7 @@ namespace SpecificationPatternRepository.Core.Clauses
         public WhereClause(Expression<Func<T, bool>> expression)
         {
             Expression = expression;
-            _whereFunc = new Lazy<Func<T, bool>>(expression.Compile);
+            _whereFunc = new Lazy<Func<T, bool>>(expression.Compile());
         }
     }
 }
