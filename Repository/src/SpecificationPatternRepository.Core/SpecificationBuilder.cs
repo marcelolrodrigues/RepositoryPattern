@@ -69,6 +69,13 @@ namespace SpecificationPatternRepository.Core
             BaseSpecification.AsNoTracking = asNoTracking;
             return this;
         }
+
+        public ISpecificationBuilder<T> Like(Expression<Func<T, string>> expression, string searchItem, int likeGroup = 1)
+        {
+            LikeClause<T> likeClause = new LikeClause<T>(expression, searchItem, likeGroup);
+            BaseSpecification.LikeClauses.Add(likeClause);
+            return this;
+        }
     }
 
     public class SpecificationBuilder<T, TResult> : SpecificationBuilder<T>, ISpecificationBuilder<T, TResult>

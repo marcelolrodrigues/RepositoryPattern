@@ -12,6 +12,7 @@ namespace SpecificationPatternRepository.Core
         public int? Take { get; internal set; }
         public ICollection<IncludeClause> IncludeClauses { get; }
         public bool AsNoTracking { get; internal set; }
+        public ICollection<LikeClause<T>> LikeClauses { get; set; }
 
         public ISpecificationBuilder<T> SpecificationBuilder { get; }
         
@@ -25,6 +26,7 @@ namespace SpecificationPatternRepository.Core
             Take = null;
             IncludeClauses = new List<IncludeClause>();
             AsNoTracking = false;
+            LikeClauses = new List<LikeClause<T>>();
             SpecificationBuilder = new SpecificationBuilder<T>(this);
             _inMemorySpecificationEvaluator = InMemorySpecificationEvaluator.Instance;
         }

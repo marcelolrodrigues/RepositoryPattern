@@ -13,6 +13,7 @@ namespace SpecificationPatternRepository.Core.Interfaces
         public ISpecificationBuilder<T> Take(int take);
         public ISpecificationBuilder<T> Include<T, TProperty>(Expression<Func<T, TProperty>> expression);
         public ISpecificationBuilder<T> AsNoTracking(bool asNoTracking);
+        public ISpecificationBuilder<T> Like(Expression<Func<T, string>> expression, string searchItem, int likeGroup = 1);
     }
 
     public interface ISpecificationBuilder<T, TResult> : ISpecificationBuilder<T>

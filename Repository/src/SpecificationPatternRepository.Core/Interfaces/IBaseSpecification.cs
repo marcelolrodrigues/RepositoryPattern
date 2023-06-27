@@ -10,6 +10,7 @@ namespace SpecificationPatternRepository.Core.Interfaces
         public int? Take { get; }
         public ICollection<IncludeClause> IncludeClauses { get; }
         public bool AsNoTracking { get; }
+        public ICollection<LikeClause<T>> LikeClauses { get; }
     }
 
     public interface IBaseSpecification<T, TResult> : IBaseSpecification<T>
