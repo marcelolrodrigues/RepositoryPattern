@@ -1,5 +1,4 @@
-﻿using Ardalis.Specification;
-using SpecificationPatternRepository.Core.Clauses;
+﻿using SpecificationPatternRepository.Core.Clauses;
 using SpecificationPatternRepository.Core.Interfaces;
 
 namespace SpecificationPatternRepository.Core.Evaluator

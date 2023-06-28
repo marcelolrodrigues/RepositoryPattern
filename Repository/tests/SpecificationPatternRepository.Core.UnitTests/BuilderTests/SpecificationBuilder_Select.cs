@@ -10,7 +10,7 @@ namespace SpecificationPatternRepository.Core.UnitTests.BuilderTests
         {
             StoreNamesEmptySpec spec = new StoreNamesEmptySpec();
 
-            spec.SelectManyClause.Should().BeNull();
+            spec.SelectClause.Should().BeNull();
         }
 
         [Fact]
@@ -18,7 +18,7 @@ namespace SpecificationPatternRepository.Core.UnitTests.BuilderTests
         {
             var spec = new StoreNamesSpec();
 
-            spec.SelectManyClause.Should().NotBeNull();
+            spec.SelectClause.Should().NotBeNull();
         }
     }
 }

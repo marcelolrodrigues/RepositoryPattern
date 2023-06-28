@@ -1,6 +1,6 @@
 ﻿using SpecificationPatternRepository.Core.Exceptions;
 
-namespace Ardalis.Specification
+namespace SpecificationPatternRepository.Core.Evaluator
 {
     public static class LikeExtension
     {
@@ -35,7 +35,7 @@ namespace Ardalis.Specification
             for (int i = 0; i < str.Length; i++)
             {
                 char c = str[i];
-                endOfPattern = (patternIndex >= pattern.Length);
+                endOfPattern = patternIndex >= pattern.Length;
                 if (!endOfPattern)
                 {
                     p = pattern[patternIndex];
@@ -106,8 +106,8 @@ namespace Ardalis.Specification
                 }
                 else if (isCharSetOn || isNotCharSetOn)
                 {
-                    bool charMatch = (set.Contains(char.ToUpper(c)));
-                    if ((isNotCharSetOn && charMatch) || (isCharSetOn && !charMatch))
+                    bool charMatch = set.Contains(char.ToUpper(c));
+                    if (isNotCharSetOn && charMatch || isCharSetOn && !charMatch)
                     {
                         if (lastWildCard >= 0) patternIndex = lastWildCard;
                         else
@@ -135,7 +135,7 @@ namespace Ardalis.Specification
                     }
                 }
             }
-            endOfPattern = (patternIndex >= pattern.Length);
+            endOfPattern = patternIndex >= pattern.Length;
 
             if (isMatch && !endOfPattern)
             {

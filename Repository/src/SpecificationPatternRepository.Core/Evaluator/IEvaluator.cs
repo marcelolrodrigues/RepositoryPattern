@@ -1,4 +1,6 @@
-﻿namespace SpecificationPatternRepository.Core.Interfaces
+﻿using SpecificationPatternRepository.Core.Interfaces;
+
+namespace SpecificationPatternRepository.Core.Evaluator
 {
     public interface IEvaluator
     {

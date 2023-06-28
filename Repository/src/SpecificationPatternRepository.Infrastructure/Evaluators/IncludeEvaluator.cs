@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using SpecificationPatternRepository.Core.Clauses;
+using SpecificationPatternRepository.Core.Evaluator;
 using SpecificationPatternRepository.Core.Interfaces;
 using System.Linq.Expressions;
 using System.Reflection;

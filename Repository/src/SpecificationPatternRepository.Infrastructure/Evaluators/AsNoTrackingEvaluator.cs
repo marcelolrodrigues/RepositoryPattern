@@ -1,5 +1,6 @@
 ﻿using SpecificationPatternRepository.Core.Interfaces;
 using Microsoft.EntityFrameworkCore;
+using SpecificationPatternRepository.Core.Evaluator;
 
 namespace SpecificationPatternRepository.Infrastructure.Evaluators
 {

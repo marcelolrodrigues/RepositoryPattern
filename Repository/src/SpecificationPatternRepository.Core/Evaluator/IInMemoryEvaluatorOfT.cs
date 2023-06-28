@@ -1,4 +1,6 @@
-﻿namespace SpecificationPatternRepository.Core.Interfaces
+﻿using SpecificationPatternRepository.Core.Interfaces;
+
+namespace SpecificationPatternRepository.Core.Evaluator
 {
     public interface IInMemoryEvaluatorOfT
     {
@@ -8,5 +10,5 @@
     public interface IInMemoryEvaluatorOfTAndTResult
     {
         IEnumerable<TResult> Evaluate<T, TResult>(IEnumerable<T> set, IBaseSpecification<T, TResult> specification);
-    }    
+    }
 }
